@@ -1,0 +1,24 @@
+.container {
+  background-color: #F6F6F6;
+  max-width: 1440px;
+  min-width: 533px;
+  height: 100%;
+  padding: 69px 100px 0px;
+}
+
+.creatorCard {
+  margin-top: 50px;
+    display:flex;
+    justify-content: center;
+}
+
+.services{
+  margin-top: 50px;
+}
+
+@media screen and (max-width: 1160px) {
+  .creatorCard {
+    display:flex;
+    justify-content: center;
+  }
+}

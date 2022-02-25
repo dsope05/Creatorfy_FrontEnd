@@ -1,0 +1,20 @@
+.creatorButton {
+  width: 116px;
+  height: 40px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 500;
+}
+
+.secondary {
+  color: #5B497A;
+  background-color: #F6F6F6;
+  border: 1px solid rgba(91, 73, 122, 0.5);
+}
+
+.primary {
+  color: #FFFFFF;
+  background-color: #5B497A;
+}
