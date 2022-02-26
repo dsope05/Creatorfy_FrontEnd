@@ -18,8 +18,12 @@
   height: 579px;
   background-color: white;
   border-radius: 10px;
+  padding: 20px;
+}
+
+.serviceImageWrapper {
+  margin-bottom: 20px;
   display: flex;
-  align-items: center;
   justify-content: center;
 }
 
@@ -36,4 +40,54 @@
 .selected {
   border-bottom: 4px solid #D800B9;
   padding-bottom: 8px;
+}
+
+.servicesImage {
+  border-radius: 10px;
+}
+
+.star {
+  margin-right: 3px;
+}
+
+.starWrapper {
+  margin-right: 3px;
+  display: flex;
+  align-items: center;
+}
+
+.serviceTitle {
+  font-weight: 600;
+  font-size: 20px;
+  margin-top: 0px;
+}
+
+.titleContainer {
+  display: flex;
+}
+
+.logoImageWrapper {
+  width: 95px;
+}
+
+.serviceDescription {
+  width: 250px;
+}
+
+.startingAt{
+  font-weight: 400;
+  font-size: 16;
+  margin-right: 10px;
+}
+
+.priceWrapper {
+  display: flex;
+  margin-top: 15px;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.price {
+  font-weight: 500;
+  font-size: 30px;
 }

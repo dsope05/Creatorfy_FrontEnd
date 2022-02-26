@@ -56,7 +56,7 @@ const Header = () => {
               />
             </li>
           </li>
-          <li className={styles.nav_menu} hidden>
+          <li className={styles.nav_menu}>
             <Image
               alt="Nav Menu"
               src="/list.svg"
