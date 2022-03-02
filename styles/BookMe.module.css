@@ -1,0 +1,77 @@
+.bookMeContainer {
+  background: white;
+  padding-top: 24px;
+}
+
+.scheduleSelectorContainer {
+  background: rgb(245, 245, 245);
+  padding: 24px;
+  margin: 24px;
+}
+
+.creatorName {
+  margin: 0;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.description {
+  margin: 12px 0;
+  font-size: 16px;
+  text-align: center;
+}
+
+.dateCell, .selectedDateCell, .unselectableDateCell {
+  border-radius: 5px;
+  padding: 16px 12px;
+  text-align: center;
+  transition: 0.3s;
+  font-weight: bold;
+  border: 1px solid rgb(190, 190, 190);
+  cursor: pointer;
+}
+
+.dateCell {
+  background-color: white;
+}
+
+.dateCell:hover {
+  background-color: #5b497a98;
+}
+
+.selectedDateCell {
+  background-color: #5b497ad3;
+}
+
+.unselectableDateCell {
+  pointer-events: none;
+  font-weight: normal;
+  opacity: 30%;
+}
+
+.dateLabelCell {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.todayLabel {
+  font-size: 10px;
+  padding: 4px;
+  max-width: 44px;
+  border-radius: 5px;
+  color: white;
+  background-color: #5b497ad3;
+  font-weight: bold;
+}
+
+.weekdayLabel {
+  font-size: 16px;
+  padding-top: 12px;
+  color: rgb(140, 140, 138);
+}
+
+.dateLabel {
+  font-size: 36px;
+}
