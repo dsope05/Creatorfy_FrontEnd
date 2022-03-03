@@ -1,0 +1,23 @@
+.calendarDate, .todayCalendarDate, .placeholderCalendarDate {
+  margin: 2px;
+  padding: 8px 0;
+  border-radius: 4px;
+  transition: 0.3s;
+  background-color: white;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+
+.calendarDate:hover, .todayCalendarDate:hover {
+  background-color: #5b497ad3;
+}
+
+.todayCalendarDate {
+  background-color: rgb(105, 143, 105);
+}
+
+.placeholderCalendarDate {
+  opacity: 30%;
+  border: none;
+  cursor: text;
+}

@@ -1,6 +1,7 @@
 import { ChangeEventHandler, ReactNode, useState } from 'react';
 import ScheduleSelector from 'react-schedule-selector';
 import BookMeNavigation from './BookMeNavigation';
+import CalendarModal from '../CalendarModal';
 import { TimeZone } from '../utils/constants';
 import styles from '../../styles/BookMe.module.css';
 
@@ -29,6 +30,8 @@ const BookMe = ({
   const todayString = today.toLocaleDateString();
   const timeInMilliseconds = today.getTime();
 
+  const [startDate, setStartDate] = useState<Date>(today);
+  const [isCalendarModalOpen, setIsCalendarModalOpen] = useState<boolean>(false);
   const [timeZone, setTimeZone] = useState<TimeZone>(
     TimeZone[Intl.DateTimeFormat().resolvedOptions().timeZone] || TimeZone.UTC
   );
@@ -41,6 +44,9 @@ const BookMe = ({
   const onTimeZoneChange: ChangeEventHandler<HTMLSelectElement> = (e) => {
     setTimeZone(TimeZone[e.target.value] || TimeZone.UTC);
   };
+
+  const openCalendarModal = (): void => setIsCalendarModalOpen(true);
+  const closeCalendarModal = (): void => setIsCalendarModalOpen(false);
 
   const renderDateLabel = (date: Date): ReactNode => (
     <article className={styles.dateLabelCell}>
@@ -78,31 +84,41 @@ const BookMe = ({
   };
 
   return (
-    <div className={styles.bookMeContainer}>
-      <h1 className={styles.creatorName}>{creatorName}</h1>
-      <p className={styles.description}>{description}</p>
-      <BookMeNavigation
-        month={startDateMonth}
-        timeZone={timeZone}
-        openCalendarModal={() => console.log('open')}
-        onPreviousClick={onPreviousClick}
-        onNextClick={onNextClick}
-        onTimeZoneChange={onTimeZoneChange}
+    <>
+      <CalendarModal
+        isOpen={isCalendarModalOpen}
+        date={startDate}
+        startDateMonth={startDateMonth}
+        todayString={todayString}
+        setStartDate={setStartDate}
+        closeCalendarModal={closeCalendarModal}
       />
-      <section className={styles.scheduleSelectorContainer}>
-        <ScheduleSelector
-          selection={appointments}
-          minTime={8}
-          maxTime={17}
-          dateFormat="D"
-          rowGap="8px"
-          columnGap="24px"
-          onChange={handleChange}
-          renderDateLabel={renderDateLabel}
-          renderDateCell={renderDateCell}
+      <div className={styles.bookMeContainer}>
+        <h1 className={styles.creatorName}>{creatorName}</h1>
+        <p className={styles.description}>{description}</p>
+        <BookMeNavigation
+          month={startDateMonth}
+          timeZone={timeZone}
+          openCalendarModal={openCalendarModal}
+          onPreviousClick={onPreviousClick}
+          onNextClick={onNextClick}
+          onTimeZoneChange={onTimeZoneChange}
         />
-      </section>
-    </div>
+        <section className={styles.scheduleSelectorContainer}>
+          <ScheduleSelector
+            selection={appointments}
+            minTime={8}
+            maxTime={17}
+            dateFormat="D"
+            rowGap="8px"
+            columnGap="24px"
+            onChange={handleChange}
+            renderDateLabel={renderDateLabel}
+            renderDateCell={renderDateCell}
+          />
+        </section>
+      </div>
+    </>
   );
 };
 
