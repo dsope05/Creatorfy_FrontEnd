@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import BookMe from '../../components/BookMe';
+import { convertDateToUtc } from '../../components/utils/dateUtils';
 
 const BookMePreview = () => {
   const [appointments, setAppointments] = useState<Date[]>([]);
@@ -7,11 +8,9 @@ const BookMePreview = () => {
   const selectAppointment = (newAppointments: Date[]): void =>
     setAppointments(newAppointments);
 
-  const createAppointment = (newAppointments: Date[]): void =>
-    setAppointments(newAppointments);
-
-  const onTodayClick = () => {
-    console.log('click');
+  const createAppointment = (newAppointments: Date[]): void => {
+    const appointments = newAppointments.map((date: Date) => convertDateToUtc(date));
+    console.log('Appointments: ', appointments);
   };
 
   const onPreviousClick = () => {
@@ -27,7 +26,6 @@ const BookMePreview = () => {
       appointments={appointments}
       creatorName="Creatorfy"
       description="Choose a time that works for you."
-      onTodayClick={onTodayClick}
       onPreviousClick={onPreviousClick}
       onNextClick={onNextClick}
       handleChange={selectAppointment}

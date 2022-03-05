@@ -1,15 +1,14 @@
-import { ReactNode } from 'react';
+import { ChangeEventHandler, ReactNode, useState } from 'react';
 import ScheduleSelector from 'react-schedule-selector';
-import { parseDateToTime } from '../utils/dateUtils';
-import styles from '../../styles/BookMe.module.css';
 import BookMeNavigation from './BookMeNavigation';
+import { TimeZone } from '../utils/constants';
+import styles from '../../styles/BookMe.module.css';
 
 interface BookMeProps {
   creatorName: string;
   description: string;
   appointments: Date[];
   unavailableAppointments?: Date[];
-  onTodayClick: () => void;
   onPreviousClick: () => void;
   onNextClick: () => void;
   handleChange: (appointments: Date[]) => void;
@@ -21,7 +20,6 @@ const BookMe = ({
   description,
   appointments,
   unavailableAppointments = [],
-  onTodayClick,
   onPreviousClick,
   onNextClick,
   handleChange,
@@ -31,33 +29,50 @@ const BookMe = ({
   const todayString = today.toLocaleDateString();
   const timeInMilliseconds = today.getTime();
 
+  const [timeZone, setTimeZone] = useState<TimeZone>(
+    TimeZone[Intl.DateTimeFormat().resolvedOptions().timeZone] || TimeZone.UTC
+  );
+
+  const startDateMonth = `${today.toLocaleString('default', {
+    timeZone,
+    month: 'long',
+  })} ${today.getFullYear()}`;
+
+  const onTimeZoneChange: ChangeEventHandler<HTMLSelectElement> = (e) => {
+    setTimeZone(TimeZone[e.target.value] || TimeZone.UTC);
+  };
+
   const renderDateLabel = (date: Date): ReactNode => (
     <article className={styles.dateLabelCell}>
       {todayString === date.toLocaleDateString() && (
         <label className={styles.todayLabel}>TODAY</label>
       )}
       <label className={styles.weekdayLabel}>
-        {date.toLocaleString('default', { weekday: 'short' })}
+        {date.toLocaleString('default', { timeZone, weekday: 'short' })}
       </label>
       <label className={styles.dateLabel}>{date.getDate()}</label>
     </article>
   );
 
-  const renderDateCell = (time: Date, selected: boolean): ReactNode => {
+  const renderDateCell = (date: Date, selected: boolean): ReactNode => {
     const isUnselectable =
-      timeInMilliseconds > time.getTime() ||
-      unavailableAppointments.includes(time);
+      timeInMilliseconds > date.getTime() ||
+      unavailableAppointments.includes(date);
     return (
       <article
         className={
           isUnselectable
             ? styles.unselectableDateCell
             : selected
-              ? styles.selectedDateCell
-              : styles.dateCell
+            ? styles.selectedDateCell
+            : styles.dateCell
         }
       >
-        {parseDateToTime(time)}
+        {date.toLocaleTimeString('en-US', {
+          timeZone,
+          hour: '2-digit',
+          minute: '2-digit',
+        })}
       </article>
     );
   };
@@ -67,12 +82,12 @@ const BookMe = ({
       <h1 className={styles.creatorName}>{creatorName}</h1>
       <p className={styles.description}>{description}</p>
       <BookMeNavigation
-        month={`${today.toLocaleString('default', {
-          month: 'long',
-        })} ${today.getFullYear()}`}
-        onTodayClick={onTodayClick}
+        month={startDateMonth}
+        timeZone={timeZone}
+        openCalendarModal={() => console.log('open')}
         onPreviousClick={onPreviousClick}
         onNextClick={onNextClick}
+        onTimeZoneChange={onTimeZoneChange}
       />
       <section className={styles.scheduleSelectorContainer}>
         <ScheduleSelector
@@ -83,7 +98,6 @@ const BookMe = ({
           rowGap="8px"
           columnGap="24px"
           onChange={handleChange}
-          onSubmit={handleSubmit}
           renderDateLabel={renderDateLabel}
           renderDateCell={renderDateCell}
         />

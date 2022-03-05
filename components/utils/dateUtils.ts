@@ -1,8 +1,11 @@
-export const parseDateToTime = (date: Date): string => {
-  const hours = date.getHours();
-  const minutes = date.getMinutes();
-  const timePeriod = hours < 12 ? 'AM' : 'PM';
-  return `${hours < 13 ? hours : hours - 12}:${
-    minutes < 10 ? `0${minutes}` : minutes
-  } ${timePeriod}`;
+export const convertDateToUtc = (date: Date): Date => {
+  const utc = Date.UTC(
+    date.getUTCFullYear(),
+    date.getUTCMonth(),
+    date.getUTCDate(),
+    date.getUTCHours(),
+    date.getUTCMinutes()
+  );
+
+  return new Date(utc);
 };
