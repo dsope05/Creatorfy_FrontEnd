@@ -1,33 +1,32 @@
-import { ChangeEventHandler, ReactNode, useState } from 'react';
+import { ChangeEventHandler, MouseEventHandler, ReactNode, useState } from 'react';
 import ScheduleSelector from 'react-schedule-selector';
 import BookMeNavigation from './BookMeNavigation';
 import CalendarModal from '../CalendarModal';
+import { convertDateToUtc } from '../utils/dateUtils';
 import { TimeZone } from '../utils/constants';
 import styles from '../../styles/BookMe.module.css';
 
 interface BookMeProps {
   creatorName: string;
   description: string;
-  appointments: Date[];
-  unavailableAppointments?: Date[];
-  handleChange: (appointments: Date[]) => void;
-  handleSubmit: (appointments: Date[]) => void;
+  previouslyScheduledAppointments: Date[];
+  createAppointments: (appointments: Date[]) => void;
 };
 
 const BookMe = ({
   creatorName,
   description,
-  appointments,
-  unavailableAppointments = [],
-  handleChange,
-  handleSubmit,
+  previouslyScheduledAppointments,
+  createAppointments,
 }: BookMeProps) => {
   const today = new Date();
   const todayString = today.toLocaleDateString();
   const timeInMilliseconds = today.getTime();
 
+  const [appointments, setAppointments] = useState<Date[]>([]);
   const [startDate, setStartDate] = useState<Date>(today);
-  const [isCalendarModalOpen, setIsCalendarModalOpen] = useState<boolean>(false);
+  const [isCalendarModalOpen, setIsCalendarModalOpen] =
+    useState<boolean>(false);
   const [timeZone, setTimeZone] = useState<TimeZone>(
     TimeZone[Intl.DateTimeFormat().resolvedOptions().timeZone] || TimeZone.UTC
   );
@@ -43,10 +42,12 @@ const BookMe = ({
 
   const openCalendarModal = (): void => setIsCalendarModalOpen(true);
   const closeCalendarModal = (): void => setIsCalendarModalOpen(false);
+  const selectAppointment = (newAppointments: Date[]): void =>
+    setAppointments(newAppointments);
 
   const onPreviousClick = () => {
-    const previousWeekStartDate = new Date(startDate.getTime());;
-    previousWeekStartDate.setDate(previousWeekStartDate.getDate() - 7)
+    const previousWeekStartDate = new Date(startDate.getTime());
+    previousWeekStartDate.setDate(previousWeekStartDate.getDate() - 7);
     setStartDate(previousWeekStartDate);
   };
 
@@ -54,6 +55,13 @@ const BookMe = ({
     const nextWeekStartDate = new Date(startDate.getTime());
     nextWeekStartDate.setDate(nextWeekStartDate.getDate() + 7);
     setStartDate(nextWeekStartDate);
+  };
+
+  const onConfirmClick: MouseEventHandler<HTMLButtonElement> = () => {
+    const newAppointments = appointments
+      .filter((date: Date) => !previouslyScheduledAppointments.includes(date))
+      .map((date: Date) => convertDateToUtc(date));
+    createAppointments(newAppointments);
   };
 
   const renderDateLabel = (date: Date): ReactNode => (
@@ -71,7 +79,7 @@ const BookMe = ({
   const renderDateCell = (date: Date, selected: boolean): ReactNode => {
     const isUnselectable =
       timeInMilliseconds > date.getTime() ||
-      unavailableAppointments.includes(date);
+      previouslyScheduledAppointments.includes(date);
     return (
       <article
         className={
@@ -120,11 +128,14 @@ const BookMe = ({
             dateFormat="D"
             rowGap="8px"
             columnGap="24px"
-            onChange={handleChange}
+            onChange={selectAppointment}
             renderDateLabel={renderDateLabel}
             renderDateCell={renderDateCell}
           />
         </section>
+        <button className={styles.confirmButton} onClick={onConfirmClick}>
+          CONFIRM
+        </button>
       </div>
     </>
   );

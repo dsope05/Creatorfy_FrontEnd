@@ -1,6 +1,8 @@
 .bookMeContainer {
   background: white;
   padding-top: 24px;
+  display: flex;
+  flex-direction: column;
 }
 
 .scheduleSelectorContainer {
@@ -75,4 +77,26 @@
 
 .dateLabel {
   font-size: 36px;
+}
+
+.confirmButton {
+  background: none;
+  border: 2px solid #5b497ad3;
+  border-radius: 4px;
+  padding: 12px 18px;
+  margin: 24px;
+  transition: 0.3s;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  background-color: #5b497ad3;
+  letter-spacing: 2px;
+}
+
+.confirmButton:hover {
+  background-color: white;
+}
+
+.confirmButton:focus {
+  outline-color: #5b497ad3;
 }
