@@ -5,9 +5,8 @@ import styles from '../../styles/CalendarModal.module.css'
 
 interface CalendarModalProps {
   isOpen: boolean;
-  date: Date;
+  startDate: Date;
   startDateMonth: string;
-  todayString: string;
   dayLabels?: string[];
   setStartDate: Dispatch<SetStateAction<Date>>;
   closeCalendarModal: () => void;
@@ -15,22 +14,16 @@ interface CalendarModalProps {
 
 const CalendarModal = ({
   isOpen,
-  date,
+  startDate,
   startDateMonth,
-  todayString,
   dayLabels = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
   setStartDate,
   closeCalendarModal,
 }: CalendarModalProps) => {
-  const year = date.getFullYear();
-  const month = date.getMonth();
-
-  const {
-    lastDate,
-    lastDay,
-    previousMonthPlaceholderDates,
-    nextMonthPlaceholderDates,
-  } = getMonthPlaceholderDates({ year, month });
+  const year = startDate.getFullYear();
+  const month = startDate.getMonth();
+  const { lastDate, lastDay, previousMonthDates, nextMonthDates } =
+    getMonthPlaceholderDates({ year, month });
 
   return isOpen ? (
     <div className={styles.modalContainer} onClick={closeCalendarModal}>
@@ -42,12 +35,12 @@ const CalendarModal = ({
               {label}
             </span>
           ))}
-          {previousMonthPlaceholderDates.map((placeholderDate) => (
+          {previousMonthDates.map((previousMonthDate) => (
             <CalendarDate
-              name={`placeholder-${placeholderDate}`}
-              key={`placeholder-${placeholderDate}`}
-              DD={placeholderDate}
-              handleClick={() => setStartDate(new Date())}
+              name={previousMonthDate.toLocaleDateString()}
+              key={previousMonthDate.toLocaleDateString()}
+              DD={previousMonthDate.getDate()}
+              handleClick={() => setStartDate(previousMonthDate)}
               isPlaceholder
             />
           ))}
@@ -58,18 +51,18 @@ const CalendarModal = ({
                 name={dateString}
                 key={DD}
                 DD={DD}
-                handleClick={() => setStartDate(new Date())}
-                isToday={todayString === dateString}
+                handleClick={() => setStartDate(new Date(dateString))}
+                isToday={startDate.toLocaleDateString() === dateString}
               />
-            )
+            );
           })}
           {lastDay !== 6
-            ? nextMonthPlaceholderDates.map((placeholderDate) => (
+            ? nextMonthDates.map((nextMonthDate) => (
                 <CalendarDate
-                  name={`placeholder-${placeholderDate}`}
-                  key={`placeholder-${placeholderDate}`}
-                  DD={placeholderDate}
-                  handleClick={() => setStartDate(new Date())}
+                  name={nextMonthDate.toLocaleDateString()}
+                  key={nextMonthDate.toLocaleDateString()}
+                  DD={nextMonthDate.getDate()}
+                  handleClick={() => setStartDate(nextMonthDate)}
                   isPlaceholder
                 />
               ))

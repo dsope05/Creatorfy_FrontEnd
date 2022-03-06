@@ -1,7 +1,7 @@
 import { MouseEventHandler } from 'react';
 import styles from '../../styles/CalendarDate.module.css';
 
-interface DateProps {
+interface CalendarDateProps {
   DD: number;
   name: string;
   isToday?: boolean;
@@ -15,7 +15,7 @@ const CalendarDate = ({
   isToday = false,
   isPlaceholder = false,
   handleClick,
-}: DateProps) => (
+}: CalendarDateProps) => (
   <button
     aria-label={name}
     className={

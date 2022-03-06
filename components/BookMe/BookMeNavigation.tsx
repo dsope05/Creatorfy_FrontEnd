@@ -3,7 +3,7 @@ import Image from 'next/image'
 import { TimeZone } from '../utils/constants';
 import styles from '../../styles/BookMeNavigation.module.css';
 
-interface Props {
+interface BookMeNavigationProps {
   month: string;
   timeZone: TimeZone;
   onPreviousClick: () => void;
@@ -19,7 +19,7 @@ const BookMeNavigation = ({
   onPreviousClick,
   onNextClick,
   onTimeZoneChange,
-}: Props): JSX.Element => (
+}: BookMeNavigationProps): JSX.Element => (
   <section className={styles.navigationContainer}>
     <select
       className={styles.timezones}

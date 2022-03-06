@@ -10,8 +10,6 @@ interface BookMeProps {
   description: string;
   appointments: Date[];
   unavailableAppointments?: Date[];
-  onPreviousClick: () => void;
-  onNextClick: () => void;
   handleChange: (appointments: Date[]) => void;
   handleSubmit: (appointments: Date[]) => void;
 };
@@ -21,8 +19,6 @@ const BookMe = ({
   description,
   appointments,
   unavailableAppointments = [],
-  onPreviousClick,
-  onNextClick,
   handleChange,
   handleSubmit,
 }: BookMeProps) => {
@@ -36,10 +32,10 @@ const BookMe = ({
     TimeZone[Intl.DateTimeFormat().resolvedOptions().timeZone] || TimeZone.UTC
   );
 
-  const startDateMonth = `${today.toLocaleString('default', {
+  const startDateMonth = `${startDate.toLocaleString('default', {
     timeZone,
     month: 'long',
-  })} ${today.getFullYear()}`;
+  })} ${startDate.getFullYear()}`;
 
   const onTimeZoneChange: ChangeEventHandler<HTMLSelectElement> = (e) => {
     setTimeZone(TimeZone[e.target.value] || TimeZone.UTC);
@@ -47,6 +43,18 @@ const BookMe = ({
 
   const openCalendarModal = (): void => setIsCalendarModalOpen(true);
   const closeCalendarModal = (): void => setIsCalendarModalOpen(false);
+
+  const onPreviousClick = () => {
+    const previousWeekStartDate = new Date(startDate.getTime());;
+    previousWeekStartDate.setDate(previousWeekStartDate.getDate() - 7)
+    setStartDate(previousWeekStartDate);
+  };
+
+  const onNextClick = () => {
+    const nextWeekStartDate = new Date(startDate.getTime());
+    nextWeekStartDate.setDate(nextWeekStartDate.getDate() + 7);
+    setStartDate(nextWeekStartDate);
+  };
 
   const renderDateLabel = (date: Date): ReactNode => (
     <article className={styles.dateLabelCell}>
@@ -87,9 +95,8 @@ const BookMe = ({
     <>
       <CalendarModal
         isOpen={isCalendarModalOpen}
-        date={startDate}
+        startDate={startDate}
         startDateMonth={startDateMonth}
-        todayString={todayString}
         setStartDate={setStartDate}
         closeCalendarModal={closeCalendarModal}
       />
@@ -106,6 +113,7 @@ const BookMe = ({
         />
         <section className={styles.scheduleSelectorContainer}>
           <ScheduleSelector
+            startDate={startDate}
             selection={appointments}
             minTime={8}
             maxTime={17}

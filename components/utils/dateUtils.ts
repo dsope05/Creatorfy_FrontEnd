@@ -10,6 +10,19 @@ export const convertDateToUtc = (date: Date): Date => {
   return new Date(utc);
 };
 
+const getPreviousDay = (date: Date = new Date()) => {
+  const previous = new Date(date.getTime());
+  previous.setDate(date.getDate() - 1);
+  return previous;
+};
+
+const getNextDay = (date: Date = new Date()) => {
+  const next = new Date(date.getTime());
+  next.setMonth(next.getMonth() + 1);
+  next.setDate(1);
+  return next;
+};
+
 export const getMonthPlaceholderDates = ({
   year,
   month,
@@ -19,8 +32,8 @@ export const getMonthPlaceholderDates = ({
 }): {
   lastDate: number;
   lastDay: number;
-  previousMonthPlaceholderDates: number[];
-  nextMonthPlaceholderDates: number[];
+  previousMonthDates: Date[];
+  nextMonthDates: Date[];
 } => {
   const isJanuary = month === 1;
   const monthStartDay = isJanuary
@@ -31,24 +44,24 @@ export const getMonthPlaceholderDates = ({
     : new Date(year, month - 1, 0);
   const monthEnd = new Date(year, month, 0);
 
-  const previousMonthPlaceholderDates = [];
-  let previousMonthDate = previousMonthEnd.getDate();
-  while (previousMonthPlaceholderDates.length < monthStartDay) {
-    previousMonthPlaceholderDates.unshift(previousMonthDate);
-    previousMonthDate -= 1;
+  const previousMonthDates = [];
+  let prevMonthDate = previousMonthEnd;
+  while (previousMonthDates.length < monthStartDay) {
+    previousMonthDates.unshift(prevMonthDate);
+    prevMonthDate = getPreviousDay(prevMonthDate);
   }
 
-  const nextMonthPlaceholderDates = [];
-  let nextMonthDate = 1;
-  while (nextMonthPlaceholderDates.length < 6 - monthEnd.getDay()) {
-    nextMonthPlaceholderDates.push(nextMonthDate);
-    nextMonthDate += 1;
+  const nextMonthDates = [];
+  let nextMonthDate = getNextDay(monthEnd);
+  while (nextMonthDates.length < 6 - monthEnd.getDay()) {
+    nextMonthDates.push(nextMonthDate);
+    nextMonthDate = getNextDay(nextMonthDate);
   }
 
   return {
     lastDate: monthEnd.getDate(),
     lastDay: monthEnd.getDay(),
-    previousMonthPlaceholderDates,
-    nextMonthPlaceholderDates,
+    previousMonthDates,
+    nextMonthDates,
   };
 };
