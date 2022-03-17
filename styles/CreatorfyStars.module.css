@@ -1,0 +1,15 @@
+.creatorfyStarsContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.creatorfyStarsText {
+  font-size: 14px;
+  font-weight: bold;
+  margin-left: 24px;
+}
+
+.emptyStar {
+  color: white;
+}
