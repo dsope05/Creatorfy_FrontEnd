@@ -23,10 +23,6 @@
   background-repeat: no-repeat;
 }
 
-.timezones:focus {
-  outline-color: #5b497ad3;
-}
-
 .monthLabel {
   font-size: 20px;
   font-weight: bold;
@@ -66,9 +62,5 @@
 }
 
 .todayButton:hover, .previousButton:hover, .nextButton:hover {
-  border-color: #5b497ad3;
-}
-
-.todayButton:focus, .previousButton:focus, .nextButton:focus {
-  outline-color: #5b497ad3;
+  border-color: #C637B3;
 }

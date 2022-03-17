@@ -4,7 +4,7 @@ import styles from '../../styles/CalendarDate.module.css';
 interface CalendarDateProps {
   DD: number;
   name: string;
-  isToday?: boolean;
+  isSelectedDate?: boolean;
   isPlaceholder?: boolean;
   handleClick: MouseEventHandler<HTMLButtonElement>;
 }
@@ -12,15 +12,15 @@ interface CalendarDateProps {
 const CalendarDate = ({
   DD,
   name,
-  isToday = false,
+  isSelectedDate = false,
   isPlaceholder = false,
   handleClick,
 }: CalendarDateProps) => (
   <button
     aria-label={name}
     className={
-      isToday
-        ? styles.todayCalendarDate
+      isSelectedDate
+        ? styles.selectedCalendarDate
         : isPlaceholder
         ? styles.placeholderCalendarDate
         : styles.calendarDate

@@ -2,6 +2,7 @@ import { ChangeEventHandler, MouseEventHandler, ReactNode, useState } from 'reac
 import ScheduleSelector from 'react-schedule-selector';
 import BookMeNavigation from './BookMeNavigation';
 import CalendarModal from '../CalendarModal';
+import { MODAL_TYPES, useModalContext } from '../providers/ModalProvider';
 import { convertDateToUtc } from '../utils/dateUtils';
 import { TimeZone } from '../utils/constants';
 import styles from '../../styles/BookMe.module.css';
@@ -19,14 +20,15 @@ const BookMe = ({
   previouslyScheduledAppointments,
   createAppointments,
 }: BookMeProps) => {
+  const { modalType, openModal } = useModalContext();
+  const openCalendarModal = (): void => openModal(MODAL_TYPES.BOOK_ME_CALENDAR_MODAL);
+
   const today = new Date();
   const todayString = today.toLocaleDateString();
   const timeInMilliseconds = today.getTime();
 
   const [appointments, setAppointments] = useState<Date[]>([]);
   const [startDate, setStartDate] = useState<Date>(today);
-  const [isCalendarModalOpen, setIsCalendarModalOpen] =
-    useState<boolean>(false);
   const [timeZone, setTimeZone] = useState<TimeZone>(
     TimeZone[Intl.DateTimeFormat().resolvedOptions().timeZone] || TimeZone.UTC
   );
@@ -40,8 +42,6 @@ const BookMe = ({
     setTimeZone(TimeZone[e.target.value] || TimeZone.UTC);
   };
 
-  const openCalendarModal = (): void => setIsCalendarModalOpen(true);
-  const closeCalendarModal = (): void => setIsCalendarModalOpen(false);
   const selectAppointment = (newAppointments: Date[]): void =>
     setAppointments(newAppointments);
 
@@ -102,11 +102,10 @@ const BookMe = ({
   return (
     <>
       <CalendarModal
-        isOpen={isCalendarModalOpen}
+        isOpen={modalType === MODAL_TYPES.BOOK_ME_CALENDAR_MODAL}
         startDate={startDate}
         startDateMonth={startDateMonth}
         setStartDate={setStartDate}
-        closeCalendarModal={closeCalendarModal}
       />
       <div className={styles.bookMeContainer}>
         <h1 className={styles.creatorName}>{creatorName}</h1>
