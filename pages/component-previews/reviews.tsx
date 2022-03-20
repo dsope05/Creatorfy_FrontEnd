@@ -1,17 +1,8 @@
-import { gql, useMutation } from "@apollo/client";
+import { useMutation } from '@apollo/client';
 import ReviewsModal from '../../components/ReviewsModal';
 import { MODAL_TYPES, useModalContext } from '../../components/providers/ModalProvider';
 import { OnVoteParameters } from '../../components/utils/types';
-
-export const VOTE_FOR_REVIEW = gql`
-  mutation voteForReview($id: Number!, $helpful: Boolean!, $reviewType: String!) {
-    diggReview(id: $id, helpful: $helpful, reviewType: $reviewType) {
-      id
-      status
-      error
-    }
-  }
-`;
+import { VOTE_FOR_REVIEW } from '../../graphql/mutations';
 
 const ReviewsPreview = () => {
   const { modalType } = useModalContext();
@@ -53,10 +44,12 @@ const ReviewsPreview = () => {
   const onVote = ({ reviewId, isHelpful, reviewType }: OnVoteParameters) => {
     voteForReview({
       variables: {
-        id: reviewId,
-        helpful: isHelpful,
-        reviewType,
-      },
+        input: {
+          id: reviewId,
+          helpful: isHelpful,
+          reviewType,
+        }
+      }
     });
   };
 

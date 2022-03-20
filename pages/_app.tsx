@@ -1,6 +1,6 @@
 import { ApolloProvider } from '@apollo/client';
 import { ModalProvider } from '../components/providers/ModalProvider';
-import { useApollo } from '../lib/apolloClient';
+import { useApollo } from '../graphql/useApollo';
 import type { AppProps } from 'next/app';
 import '../styles/globals.css'
 

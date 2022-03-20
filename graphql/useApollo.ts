@@ -1,25 +1,36 @@
 import { useMemo } from 'react';
 import { ApolloClient, HttpLink, InMemoryCache, NormalizedCacheObject } from '@apollo/client';
+import { setContext } from '@apollo/client/link/context';
 
 /* Documentation:
   https://www.apollographql.com/blog/apollo-client/next-js/building-a-next-js-app-with-slash-graphql/
   https://www.apollographql.com/blog/apollo-client/next-js/next-js-getting-started/ */
 
-// TODO: Update with Creatorfy backend base url
-const APOLLO_CLIENT_URI = undefined;
-let apolloClient;
 
+let apolloClient;
 const createApolloClient = (): ApolloClient<NormalizedCacheObject> => {
+  const httpLink = new HttpLink({
+    uri: process.env.NEXT_PUBLIC_APOLLO_CLIENT_URI,
+  });
+
+  const authLink = setContext((_, { headers }) => {
+    const token = process.env.NEXT_PUBLIC_DEVELOPER_AUTH_TOKEN;
+    return {
+      headers: {
+        ...headers,
+        authorization: token ? `Bearer ${token}` : '',
+      }
+    }
+  });
+
   return new ApolloClient({
     ssrMode: typeof window === 'undefined',
-    link: new HttpLink({
-      uri: APOLLO_CLIENT_URI || '/',
-    }),
+    link: authLink.concat(httpLink),
     cache: new InMemoryCache(),
   });
 };
 
-export const initializeApollo = (initialState = null): ApolloClient<NormalizedCacheObject> => {
+const initializeApollo = (initialState = null): ApolloClient<NormalizedCacheObject> => {
   const _apolloClient = apolloClient ?? createApolloClient();
 
   if (initialState) {

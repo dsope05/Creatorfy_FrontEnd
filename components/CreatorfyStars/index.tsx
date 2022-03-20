@@ -20,6 +20,7 @@ const CreatorfyStars = ({
         count={5}
         size={24}
         isHalf={true}
+        color="#f0f0f0"
         activeColor="#C637B3"
       />
       <span className={styles.creatorfyStarsText}>
