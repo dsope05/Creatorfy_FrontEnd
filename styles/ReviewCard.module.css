@@ -1,0 +1,74 @@
+.reviewCard {
+  margin: 12px;
+  display: flex;
+  align-items: flex-start;
+}
+
+.reviewerImage {
+  border-radius: 100%;
+}
+
+.reviewCardContent {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 12px 0 0 18px;
+}
+
+.reviewCardHeader {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  align-items: center;
+}
+
+.reviewerName {
+  margin: 0;
+  font-size: 16px;
+  grid-column: 1/4;
+  grid-row: 1;
+}
+
+.reviewTime {
+  font-size: 12px;
+  grid-column: 2/4;
+  grid-row: 1;
+}
+
+.reviewCardButtonContainer {
+  display: flex;
+  grid-column: 4/4;
+  grid-row: 1;
+  margin-left: auto;
+}
+
+.reviewCardVoteButton {
+  background: none;
+  border: none;
+  color: #C637B3;
+  padding: 2px 8px 0;
+  transition: 0.3s;
+  cursor: pointer;
+  font-size: 14px;
+  margin-right: 4px;
+}
+
+.reviewCardVoteButton:last-of-type {
+  margin-right: 0;
+}
+
+.upvoteIcon, .downvoteIcon {
+  filter: invert(43%) sepia(83%) saturate(3507%) hue-rotate(281deg) brightness(79%) contrast(95%);
+}
+
+.downvoteIcon {
+  -webkit-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  -o-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+
+.reviewText {
+  margin: 12px 0;
+  font-size: 12px;
+}

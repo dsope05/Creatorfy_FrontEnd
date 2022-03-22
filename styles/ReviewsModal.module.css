@@ -1,0 +1,50 @@
+.reviewsModal {
+  background: white;
+  padding: 24px;
+  display: flex;  
+  flex-direction: column;
+  border: 1px solid #F7DBF6;
+  border-radius: 10px;
+  cursor: text;
+}
+
+.reviewsModalTitle {
+  margin: 0;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.reviewsHeaderSection {
+  display: flex;
+  justify-content: space-between;
+  margin: 24px 0;
+}
+
+.reviewTagsSection {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.reviewsSection {
+  margin: 24px 0;
+}
+
+.showButton, .createButton {
+  border: none;
+  border-radius: 4px;
+  padding: 12px;
+  transition: 0.3s;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.showButton {
+  background: none;
+}
+
+.createButton {
+  background: #C637B3;
+  color: white;
+}

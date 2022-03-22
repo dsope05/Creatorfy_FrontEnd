@@ -1,4 +1,4 @@
-.calendarDate, .todayCalendarDate, .placeholderCalendarDate {
+.calendarDate, .selectedCalendarDate, .placeholderCalendarDate {
   margin: 2px;
   padding: 8px 0;
   border-radius: 4px;
@@ -8,12 +8,8 @@
   cursor: pointer;
 }
 
-.calendarDate:hover, .todayCalendarDate:hover {
-  background-color: #5b497ad3;
-}
-
-.todayCalendarDate {
-  background-color: rgb(105, 143, 105);
+.selectedCalendarDate, .calendarDate:hover {
+  background-color: #C637B3;
 }
 
 .placeholderCalendarDate {

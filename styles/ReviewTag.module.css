@@ -1,0 +1,19 @@
+.reviewTag {
+  border: 2px solid #F7DBF6;
+  border-radius: 4px;
+  padding: 8px 20px;
+  margin-right: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.reviewTag:last-of-type {
+  margin-right: 0;
+}
+
+.reviewTagText {
+  font-weight: bold;
+  font-size: 14px;
+  margin: 0 8px;
+}

@@ -40,11 +40,11 @@
 }
 
 .dateCell:hover {
-  background-color: #5b497a98;
+  background-color: #C637B3;
 }
 
 .selectedDateCell {
-  background-color: #5b497ad3;
+  background-color: #C637B3;
 }
 
 .unselectableDateCell {
@@ -65,7 +65,7 @@
   max-width: 44px;
   border-radius: 5px;
   color: white;
-  background-color: #5b497ad3;
+  background-color: #C637B3;
   font-weight: bold;
 }
 
@@ -81,7 +81,7 @@
 
 .confirmButton {
   background: none;
-  border: 2px solid #5b497ad3;
+  border: 2px solid #C637B3;
   border-radius: 4px;
   padding: 12px 18px;
   margin: 24px;
@@ -89,14 +89,10 @@
   cursor: pointer;
   font-size: 16px;
   font-weight: bold;
-  background-color: #5b497ad3;
+  background-color: #C637B3;
   letter-spacing: 2px;
 }
 
 .confirmButton:hover {
   background-color: white;
-}
-
-.confirmButton:focus {
-  outline-color: #5b497ad3;
 }

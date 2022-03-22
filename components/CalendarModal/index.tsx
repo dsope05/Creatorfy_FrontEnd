@@ -1,5 +1,6 @@
 import { Dispatch, SetStateAction } from 'react';
 import CalendarDate from './CalendarDate';
+import { ModalContainer } from '../providers/ModalProvider';
 import { getMonthPlaceholderDates } from '../utils/dateUtils';
 import styles from '../../styles/CalendarModal.module.css'
 
@@ -9,7 +10,6 @@ interface CalendarModalProps {
   startDateMonth: string;
   dayLabels?: string[];
   setStartDate: Dispatch<SetStateAction<Date>>;
-  closeCalendarModal: () => void;
 }
 
 const CalendarModal = ({
@@ -18,7 +18,6 @@ const CalendarModal = ({
   startDateMonth,
   dayLabels = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
   setStartDate,
-  closeCalendarModal,
 }: CalendarModalProps) => {
   const year = startDate.getFullYear();
   const month = startDate.getMonth();
@@ -26,8 +25,8 @@ const CalendarModal = ({
     getMonthPlaceholderDates({ year, month });
 
   return isOpen ? (
-    <div className={styles.modalContainer} onClick={closeCalendarModal}>
-      <div className={styles.modal}>
+    <ModalContainer>
+      <div className={styles.calendarModal}>
         <label className={styles.monthLabel}>{startDateMonth}</label>
         <article className={styles.month} aria-label="month">
           {dayLabels.map((label) => (
@@ -52,7 +51,7 @@ const CalendarModal = ({
                 key={DD}
                 DD={DD}
                 handleClick={() => setStartDate(new Date(dateString))}
-                isToday={startDate.toLocaleDateString() === dateString}
+                isSelectedDate={startDate.toLocaleDateString() === dateString}
               />
             );
           })}
@@ -69,7 +68,7 @@ const CalendarModal = ({
             : null}
         </article>
       </div>
-    </div>
+    </ModalContainer>
   ) : null;
 };
 
