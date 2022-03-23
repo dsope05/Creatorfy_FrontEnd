@@ -20,7 +20,7 @@ const CalendarModal = ({
   setStartDate,
 }: CalendarModalProps) => {
   const year = startDate.getFullYear();
-  const month = startDate.getMonth();
+  const month = startDate.getMonth() + 1;
   const { lastDate, lastDay, previousMonthDates, nextMonthDates } =
     getMonthPlaceholderDates({ year, month });
 
@@ -44,7 +44,7 @@ const CalendarModal = ({
             />
           ))}
           {Array.from({ length: lastDate }, (_, i) => i + 1).map((DD) => {
-            const dateString = `${month + 1}/${DD}/${year}`;
+            const dateString = `${month}/${DD}/${year}`;
             return (
               <CalendarDate
                 name={dateString}
