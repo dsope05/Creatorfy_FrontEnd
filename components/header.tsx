@@ -36,7 +36,7 @@ const Header = () => {
             <li className={styles.nav_item}>
               <Link href='/business' passHref>
                 <div>
-                  Business
+                  Things
                 </div>
               </Link>
             </li>
@@ -56,14 +56,14 @@ const Header = () => {
               />
             </li>
           </li>
-          <li className={styles.nav_menu}>
+          <span className={styles.nav_menu}>
             <Image
               alt="Nav Menu"
               src="/list.svg"
               width="40"
               height="40"
             />
-          </li>
+          </span>
         </ul>
       </nav>
     </header>
