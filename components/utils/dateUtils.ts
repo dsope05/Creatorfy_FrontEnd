@@ -18,8 +18,13 @@ const getPreviousDay = (date: Date = new Date()) => {
 
 const getNextDay = (date: Date = new Date()) => {
   const next = new Date(date.getTime());
-  next.setMonth(next.getMonth() + 1);
-  next.setDate(1);
+  const nextDate = date.getDate() + 1;
+  next.setDate(nextDate);
+
+  if (nextDate === 1) {
+    next.setMonth(date.getMonth() + 1);
+  }
+
   return next;
 };
 
