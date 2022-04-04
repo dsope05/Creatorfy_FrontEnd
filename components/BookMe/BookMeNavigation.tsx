@@ -1,5 +1,5 @@
 import { ChangeEventHandler } from 'react';
-import Image from 'next/image'
+import IconButton from '../Button/IconButton';
 import { TimeZone } from '../utils/constants';
 import styles from '../../styles/BookMeNavigation.module.css';
 
@@ -34,42 +34,27 @@ const BookMeNavigation = ({
     </select>
     <label className={styles.monthLabel}>{month}</label>
     <div className={styles.navigationButtons}>
-      <button
+      <IconButton
         onClick={openCalendarModal}
-        className={styles.todayButton}
-        aria-label="today"
-      >
-        <Image
-          alt="today"
-          src="/bookmeNavigationCalendar.png"
-          width="20"
-          height="20"
-        />
-      </button>
-      <button
+        ariaLabel="today"
+        imageAlt="calendar navigation icon"
+        imageSrc="/bookmeNavigationCalendar.png"
+        buttonClass={styles.todayButton}
+      />
+      <IconButton
         onClick={onPreviousClick}
-        className={styles.previousButton}
-        aria-label="previous week"
-      >
-        <Image
-          alt="today"
-          src="/bookmeNavigationLeft.png"
-          width="20"
-          height="20"
-        />
-      </button>
-      <button
+        ariaLabel="previous week"
+        imageAlt="left arrow"
+        imageSrc="/bookmeNavigationLeft.png"
+        buttonClass={styles.previousButton}
+      />
+      <IconButton
         onClick={onNextClick}
-        className={styles.nextButton}
-        aria-label="next week"
-      >
-        <Image
-          alt="today"
-          src="/bookmeNavigationRight.png"
-          width="20"
-          height="20"
-        />
-      </button>
+        ariaLabel="next week"
+        imageAlt="right arrow"
+        imageSrc="/bookmeNavigationRight.png"
+        buttonClass={styles.nextButton}
+      />
     </div>
   </section>
 );
