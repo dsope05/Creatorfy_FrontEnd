@@ -39,3 +39,9 @@ export interface MainProps {
   eventable: boolean,
   username: string
 };
+
+export interface onDiggParameters {
+  serviceId: number,
+  reviewType: string,
+  helpful: boolean
+};

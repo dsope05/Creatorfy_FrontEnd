@@ -36,3 +36,29 @@ export const USER_CREATOR = gql`
         }
     }
 `;
+
+export const GET_SERVICE_INFO = gql`
+    query services($id: [Int]) {
+        services(id:$id) {
+            error,
+            items {
+                id,
+                title,
+                reviewAverage,
+                meetable,
+                serviceType
+            }
+        }
+    }
+`
+
+export const GET_SERVICE_OWNER = gql`
+    query userCreators($id: [Int]) {
+        userCreators(id:$id){
+            error,
+            items {
+                handle
+            }           
+        }
+    }
+`

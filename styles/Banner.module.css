@@ -1,0 +1,101 @@
+.banner{
+    margin: auto;
+}
+
+.mainParent {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    border: 2px solid rgb(0, 140, 255);
+    border-radius: 30px;
+    min-width: 300px
+}
+
+.diggDiv {
+    display: flex;
+    justify-content: flex-end;;
+    margin: 15.438px 15.438px 0% 0%;
+}
+
+.diggIcon:hover {
+    cursor: pointer;
+}
+
+.textDiv {
+    padding-left: 43.25px;
+    padding-right: 43.25px;
+}
+
+.mainText {
+    margin-top: 0px;
+    font-weight: bold;
+    font-size: 30px;
+    margin-bottom: 11.484px;
+    word-wrap:break-word;
+}
+
+.mainSpan,
+.statsAndShare > p {
+    color:magenta;
+}
+
+.statsAndShare {
+    padding-left: 43.25px;
+    font-size: 20px;
+    display: flex;
+    height: 32.359px;
+    margin-bottom: 20px;
+}
+
+.statsAndShare > p {
+    margin-top: 5.359px;
+    margin-bottom: 0;
+    font-weight: bold;
+}
+
+.small {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.anchor {
+    text-decoration: none;
+}
+
+.miniHeader {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15.438px;
+    margin-left: 18.531px;
+}
+
+.gravatarDiv{
+    display: block;
+    height: 50px;
+    width: 50px;
+}
+
+.shareDiv {
+    position: relative;
+    top: 8px;
+    left: 10px;
+    
+}
+
+.shareBtn:hover {
+    cursor: pointer;
+}
+
+@media screen and (max-width: 858px) {
+    .mainParent {
+        width: 400px;
+    }
+
+    .miniHeader {
+       margin-left: 60.641px; 
+    }
+
+    .diggDiv {
+        left: 85%
+    }
+}
