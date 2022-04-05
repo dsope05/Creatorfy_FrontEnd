@@ -17,3 +17,9 @@ export interface OnVoteParameters {
   isHelpful: boolean,
   reviewType: string;
 }
+
+export interface ShareProps {
+  url: string
+  text: string,
+  title: string
+};
