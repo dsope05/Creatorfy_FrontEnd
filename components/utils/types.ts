@@ -30,3 +30,12 @@ export interface MiniProps {
   pageText: string,
   pageUrl: string
 };
+
+export interface MainProps {
+  title: string,
+  onDigg: Function,
+  starScore: number,
+  reviewScore: number,
+  eventable: boolean,
+  username: string
+};
