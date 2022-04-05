@@ -23,3 +23,10 @@ export interface ShareProps {
   text: string,
   title: string
 };
+
+export interface MiniProps {
+  creatorText: string,
+  creatorUrl: string,
+  pageText: string,
+  pageUrl: string
+};
