@@ -4,6 +4,8 @@ import CreatorCard from '../components/creatorCard'
 import Services from '../components/services'
 import Banner from '../components/Banner'
 
+
+
 export default function Profile() {
   return (
     <div className={styles.container}>

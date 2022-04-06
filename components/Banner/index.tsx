@@ -1,43 +1,44 @@
-import { FC, useState, useEffect } from 'react';
-import { useRouter } from 'next/router';
-import { useMutation, useQuery } from '@apollo/client';
+import { FC, useState, useEffect, Dispatch, SetStateAction } from 'react';
+import { NextRouter, useRouter } from 'next/router';
+import { useMutation, useQuery, MutationTuple, OperationVariables, DefaultContext, ApolloCache, QueryResult } from '@apollo/client';
 import { DIGG_MUTATION } from '../../graphql/mutations';
 import { GET_SERVICE_INFO, GET_SERVICE_OWNER } from '../../graphql/queries';
 import MainBanner from "./MainBanner";
 import MiniBanner from "./MiniBanner";
-import { onDiggParameters } from '../utils/types';
+import { ServiceInfo } from '../utils/types';
 import styles from '../../styles/Banner.module.css';
 
 const Banner: FC = (): JSX.Element => {
-    const [location, setLocation] = useState('');    
+    const [location, setLocation]: [string, Dispatch<SetStateAction<string>>] = useState<string>('');    
 
     useEffect(() => {
         setLocation(window.location.origin)
     }, [])
-    const { query } = useRouter();
 
-    const [diggMutation] = useMutation(DIGG_MUTATION);
+    const { query }: NextRouter = useRouter();
 
-    const QueriedBanner = (): JSX.Element => {
-        const { data } = useQuery(GET_SERVICE_INFO, {
+    const [diggMutation]:MutationTuple<any, OperationVariables, DefaultContext, ApolloCache<any>> = useMutation(DIGG_MUTATION);
+
+    const QueriedBanner: FC = (): JSX.Element => {
+        const { data }: QueryResult<any, { id: number; }> = useQuery(GET_SERVICE_INFO, {
             variables: {id: Number(query.id)}
         });
 
-        const {id, meetable, reviewAverage, title, serviceType} = data?.services?.items[0] ?? {};
-        const reviewAverages = reviewAverage?.split(',');
-        const starScore = reviewAverages ? reviewAverages[0] : null;
-        const reviewScore = reviewAverages ? reviewAverages[1] : null;
-        const { data: handle } = useQuery(GET_SERVICE_OWNER, {
-            variables: {id: Number(id)}
+        const { id, meetable, reviewAverage, title, serviceType }: ServiceInfo = data?.services?.items[0] ?? {};
+        const reviewAverages: string[] = reviewAverage?.split(',');
+        const starScore: string = reviewAverages ? reviewAverages[0] : null;
+        const reviewScore: string = reviewAverages ? reviewAverages[1] : null;
+        const { data: handle }: QueryResult<any, { id: number; }> = useQuery(GET_SERVICE_OWNER, {
+            variables: { id: Number(id) }
         })
-        const username = handle?.userCreators?.items[0]?.handle;
+        const username: string = handle?.userCreators?.items[0]?.handle;
 
         if(!username){
             return(<></>)
         }
-
-        const onDigg = () => {
-            diggMutation({
+        
+        const onDigg:Function = (): object => {
+            return diggMutation({
                 variables: {
                     input: {
                         id: Number(id),
@@ -51,18 +52,18 @@ const Banner: FC = (): JSX.Element => {
         return(
             <>
                 <MiniBanner 
-                    creatorText = {username}
-                    creatorUrl = {`${location}/${username}`}
-                    pageText = {serviceType}
-                    pageUrl = {`${location}/services/${id}`}
+                    creatorText={ username }
+                    creatorUrl={ `${ location }/${ username }` }
+                    pageText={ 'Services' }
+                    pageUrl={ `${ location }/services/${ id }` }
                 />
                 <MainBanner
-                    title = { title }
-                    onDigg = { onDigg }
-                    starScore = { starScore }
-                    reviewScore = { reviewScore }
-                    eventable = { meetable }
-                    username= { username }
+                    title={ title }
+                    onDigg={ onDigg }
+                    starScore={ Number(starScore) }
+                    reviewScore={ Number(reviewScore) }
+                    eventable={ meetable }
+                    username={ username }
                 />
             </>
         )

@@ -13,7 +13,7 @@ const MainBanner: FC<MainProps> = ({ title, onDigg, starScore, reviewScore, even
     }, []);
 
     const preposition: string = eventable ? 'with' : 'by';
-    const fillStar = (id: number): string => starScore >= id ? "★" : "☆";
+    const fillStar: Function = (id: number): string => starScore >= id ? "★" : "☆";
 
     return(
         <div className={ styles.mainParent }>
@@ -30,32 +30,32 @@ const MainBanner: FC<MainProps> = ({ title, onDigg, starScore, reviewScore, even
                     }}
                 />
             </div>
-            <div className={styles.textDiv}>
-                <p className={styles.mainText}>
-                    {`${title} `}
-                    <span className={styles.mainSpan}>
-                        {`${preposition} ${username}`}
+            <div className={ styles.textDiv }>
+                <p className={ styles.mainText }>
+                    { `${ title } ` }
+                    <span className={ styles.mainSpan }>
+                        { `${ preposition } ${ username }` }
                     </span>
                 </p>
             </div>
-            <div className={styles.statsAndShare}>
+            <div className={ styles.statsAndShare }>
                 {/* TODO: CHANGE P TAG TO CREATORFY STARS LOGIC*/}
                 <p>
                     {`
-                        ${fillStar(1)}
-                        ${fillStar(2)}
-                        ${fillStar(3)}
-                        ${fillStar(4)}
-                        ${fillStar(5)}
-                        ${starScore}
-                        (${reviewScore}
+                        ${ fillStar(1) }
+                        ${ fillStar(2) }
+                        ${ fillStar(3) }
+                        ${ fillStar(4) }
+                        ${ fillStar(5) }
+                        ${ starScore }
+                        (${ reviewScore }
                         reviews)
                     `}
                 </p>
                 <ShareButton
-                    url={url}
-                    text={`Check This Out! ${title}`}
-                    title={title}
+                    url={ url }
+                    text={ `Check This Out! ${ title }` }
+                    title={ title }
                 />
             </div>
         </div>

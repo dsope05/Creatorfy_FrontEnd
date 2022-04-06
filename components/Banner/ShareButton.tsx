@@ -4,12 +4,12 @@ import shareButton from '../../public/shareButton.png';
 import styles from '../../styles/Banner.module.css';
 import { ShareProps } from '../utils/types';
 
-const ShareButton: FC<ShareProps> = ({url, text, title}) => {
+const ShareButton: FC<ShareProps> = ({ url, text, title }) => {
 
-    const sharing = async (): Promise<void> => {
+    const sharing: Function = async (): Promise<void> => {
         if(navigator.share) {
             try{
-                await navigator.share({url, text, title})
+                await navigator.share({ url, text, title })
                 console.log('Shared!');
             } catch (error) {
                 window.alert(error)
@@ -18,15 +18,15 @@ const ShareButton: FC<ShareProps> = ({url, text, title}) => {
     }
 
     return(
-        <div className={styles.shareDiv}>
+        <div className={ styles.shareDiv }>
             <Image
                 layout='fixed'
-                className={styles.shareBtn}
-                height={27}
-                width={27}
-                src={shareButton}
+                className={ styles.shareBtn }
+                height={ 27 }
+                width={ 27 }
+                src={ shareButton }
                 alt='share-button'
-                onClick={(): Promise<void> => sharing()}
+                onClick={ (): Promise<void> => sharing() }
             />
         </div>
     )

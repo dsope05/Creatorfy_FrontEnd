@@ -1,5 +1,5 @@
 .banner{
-    margin: auto;
+    /* margin: auto; */
 }
 
 .mainParent {
@@ -66,7 +66,6 @@
     display: flex;
     align-items: center;
     margin-bottom: 15.438px;
-    margin-left: 18.531px;
 }
 
 .gravatarDiv{
@@ -92,7 +91,7 @@
     }
 
     .miniHeader {
-       margin-left: 60.641px; 
+       margin-left: 11%; 
     }
 
     .diggDiv {

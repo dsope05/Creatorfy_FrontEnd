@@ -40,8 +40,10 @@ export interface MainProps {
   username: string
 };
 
-export interface onDiggParameters {
-  serviceId: number,
-  reviewType: string,
-  helpful: boolean
+export interface ServiceInfo {
+  id: string,
+  meetable: boolean,
+  reviewAverage: string,
+  title: string,
+  serviceType: string
 };
