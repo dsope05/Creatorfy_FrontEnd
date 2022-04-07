@@ -50,7 +50,7 @@ const Banner: FC = (): JSX.Element => {
         };
 
         return(
-            <>
+            <div className={styles.BannerDiv}>
                 <MiniBanner 
                     creatorText={ username }
                     creatorUrl={ `${ location }/${ username }` }
@@ -65,7 +65,7 @@ const Banner: FC = (): JSX.Element => {
                     eventable={ meetable }
                     username={ username }
                 />
-            </>
+            </div>
         )
     }
 

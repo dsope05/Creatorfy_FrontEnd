@@ -1,4 +1,5 @@
 import { FC, useEffect, useState } from 'react';
+import ReactStars from 'react-rating-stars-component';
 import Image from 'next/image';
 import ShareButton from './ShareButton';
 import diggButton from '../../public/diggButton.png';
@@ -13,10 +14,9 @@ const MainBanner: FC<MainProps> = ({ title, onDigg, starScore, reviewScore, even
     }, []);
 
     const preposition: string = eventable ? 'with' : 'by';
-    const fillStar: Function = (id: number): string => starScore >= id ? "★" : "☆";
-
+    
     return(
-        <div className={ styles.mainParent }>
+        <div className={ styles.mainBannerParent }>
             <div className={ styles.diggDiv }>
                 <Image
                     layout='fixed'
@@ -39,19 +39,18 @@ const MainBanner: FC<MainProps> = ({ title, onDigg, starScore, reviewScore, even
                 </p>
             </div>
             <div className={ styles.statsAndShare }>
-                {/* TODO: CHANGE P TAG TO CREATORFY STARS LOGIC*/}
-                <p>
-                    {`
-                        ${ fillStar(1) }
-                        ${ fillStar(2) }
-                        ${ fillStar(3) }
-                        ${ fillStar(4) }
-                        ${ fillStar(5) }
-                        ${ starScore }
-                        (${ reviewScore }
-                        reviews)
-                    `}
-                </p>
+                    <ReactStars
+                        size={ 24 }
+                        value={ starScore }
+                        edit={ false }
+                        count={ 5 }
+                        isHalf={ true }
+                        color='#f0f0f0'
+                        activeColor='magenta'
+                    />
+                    <p>
+                        ({reviewScore} Reviews)
+                    </p>
                 <ShareButton
                     url={ url }
                     text={ `Check This Out! ${ title }` }
