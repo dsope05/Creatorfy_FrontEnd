@@ -36,7 +36,7 @@ const Header = () => {
             <li className={styles.nav_item}>
               <Link href='/business' passHref>
                 <div>
-                  Things
+                   About
                 </div>
               </Link>
             </li>

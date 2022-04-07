@@ -4,10 +4,12 @@ interface CreatorButtonProps {
   text: string;
   type: string;
   className?: string;
+  size?: string;
+  onClick: Function;
 }
-export default function CreatorButton({ text, type, className }: CreatorButtonProps) {
+export default function CreatorButton({ onClick, text, type, className, size }: CreatorButtonProps) {
   return (
-    <div className={`${styles.creatorButton} ${styles[type]} ${className}`}>
+    <div onClick={() => onClick()} className={`${styles.creatorButton} ${styles[type]} ${className} ${size === 'large' ? styles.creatorButtonLarge : ''}`}>
       { text }
     </div>
   )

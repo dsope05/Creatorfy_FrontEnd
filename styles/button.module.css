@@ -6,6 +6,18 @@
   justify-content: center;
   align-items: center;
   font-weight: 500;
+  cursor: pointer;
+}
+
+.creatorButtonLarge {
+  cursor: pointer;
+  width: 420px;
+  height: 40px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 500;
 }
 
 .secondary {

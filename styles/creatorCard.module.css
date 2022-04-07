@@ -1,4 +1,5 @@
 .container {
+  border: 1px solid #FFBBF5;
   padding: 40px;
   min-width: 300px;
   min-height: 424px;
@@ -134,25 +135,63 @@
 }
 
 .bPlus {
-  background-color: #B3382C;
-  opacity: 0.05;
+  background: rgba(179, 56, 44, .05);
   border-radius: 10px;
   width: 179px;
   height: 130px;
 }
 
+.reviewIconTitle {
+  font-weight: 700;
+  color: rgba(179, 56, 44);
+  font-size: 22px;
+  margin: 5px;
+  position: relative;
+  top: 15px;
+}
+
+.ratingsValue{
+  font-weight: 700;
+  font-size: 24px;
+  margin-top: 15px;
+  color: rgba(145, 70, 255);
+}
+
+.smallRatingsValue{
+  font-weight: 700;
+  font-size: 20px;
+  margin-top: 15px;
+  color: rgba(145, 70, 255);
+}
+
+.reviewIcon {
+  border: 1px solid #FCDDEC;
+  opacity: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .largeTwitch {
-  display: block;
-  background-color: #9146FF;
-  opacity: 0.05;
+  border: 1px solid #FCDDEC;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(145, 70, 255, .05);
   border-radius: 10px;
   width: 370px;
   height: 130px;
 }
 
 .smallTwitch {
-  background-color: #9146FF;
-  opacity: 0.05;
+  border: 1px solid #FCDDEC;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(145, 70, 255, .05);
   border-radius: 10px;
   width: 179px;
   height: 130px;

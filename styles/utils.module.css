@@ -1,0 +1,13 @@
+
+.creatorInput {
+    color: rgba(134, 134, 134, 0.87);
+    text-align: center;
+    width: 429px;
+    font-size: 16px;
+    height: 46.5px;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    border-radius: 4px;
+    text-align: left;
+    padding-left: 20px;
+    margin-bottom: 20px;
+}

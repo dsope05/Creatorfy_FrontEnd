@@ -1,30 +1,10 @@
+import { useState } from 'react';
 import styles from '../styles/services.module.css'
 import Image from 'next/image'
 import { useQuery } from '@apollo/client';
 import { USER_CREATOR } from '../graphql/queries';
+import CreatorfyStars from './CreatorfyStars';
 
-interface createStars {
-  rating: string;
-}
-
-
-const createStars = (ratingInput: string) => {
-  const rating = Number(ratingInput);
-  const stars = [];
-  for (let i = 0; i < 5; i++) {
-    stars.push(
-      <span className={styles.star}>
-        <Image
-          alt="Image"
-          src={ rating > i ? "/yellowStar.svg" : "/emptyStar.svg"}
-          width="25"
-          height="25"
-         />
-      </span>
-    );
-  }
-  return stars;
-}
 interface Service {
   reviewAverage: string;
   description: string;
@@ -33,8 +13,7 @@ interface Service {
 }
 
 const Service = ({ reviewAverage, description, title, bronzeServicePrice }) => {
-  const [rating, totalReviews] = reviewAverage.split(',')
-  const stars = createStars(rating);
+  const [rating, totalReviews] = reviewAverage.split(',');
   return (
     <div className={styles.service}>
       <div className={styles.serviceImageWrapper}>
@@ -64,8 +43,10 @@ const Service = ({ reviewAverage, description, title, bronzeServicePrice }) => {
       { description }
     </p>
     <div className={styles.starWrapper}>
-      { stars }
-      ({totalReviews} Reviews)
+      <CreatorfyStars
+        rating={Number(rating)}
+        reviewCount={totalReviews}
+      />
     </div>
     <div className={styles.priceWrapper}>
       <div className={styles.startingAt}>
@@ -78,8 +59,20 @@ const Service = ({ reviewAverage, description, title, bronzeServicePrice }) => {
 </div>
 )
 }
+const ServicesView = ({ servicesDisplay }) => (
+  <div className={styles.servicesContainer}>
+    { servicesDisplay }
+  </div>
+);
+
+const MerchView= () => (
+  <div className={styles.merchContainer}>
+    MerchView
+  </div>
+);
 
 export default function Services() {
+  const [selectedService, selectMenu] = useState('services');
   const { loading, error, data } = useQuery(USER_CREATOR, {
     variables: { id: 3 }
   });
@@ -95,19 +88,34 @@ export default function Services() {
         bronzeServicePrice={bronzeServicePrice}
     />);
   })
+  const servicesView = selectedService === 'services' ? 'selected' : 'unSelected';
+  const merchView = selectedService === 'merch' ? 'selected' : 'unSelected';
   return (
     <div>
       <div className={styles.menu}>
-        <span className={`${styles.servicesMenuButton} ${styles.selected}`}>
+        <span
+          onClick={() => selectMenu('services')}
+          className={`${styles.servicesMenuButton} ${styles[servicesView]}`}
+        >
           Services
         </span>
-        <span className={styles.merchMenuButton}>
-          Merch
+        <span
+          onClick={() => selectMenu('merch')}
+          className={`${styles.merchMenuButton} ${styles[merchView]}`}
+          >
+            Merch
         </span>
       </div>
-      <div className={styles.servicesContainer}>
-        { servicesDisplay }
-      </div>
+      {
+        servicesView === 'selected' && (
+          <ServicesView servicesDisplay={servicesDisplay}/>
+        )
+      }
+      {
+        merchView === 'selected' && (
+          <MerchView />
+        )
+      }
     </div>
   )
 }

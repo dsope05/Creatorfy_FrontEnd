@@ -25,6 +25,7 @@ export const USER_CREATOR = gql`
             reviewAverage
             }
             extraPublic {
+            profile_photo
             country
             language
             stat_cards
