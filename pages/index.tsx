@@ -4,7 +4,7 @@ import CreatorCard from '../components/creatorCard'
 import Services from '../components/services'
 import Banner from '../components/Banner'
 
-
+// Mobile devices default to http, but the share button requires https.
 if(process.env.NODE_ENV === 'production' && window.location.protocol !== "https:") window.location.protocol = "https:";
 
 export default function Profile() {

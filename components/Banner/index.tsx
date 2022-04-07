@@ -55,7 +55,7 @@ const Banner: FC = (): JSX.Element => {
                     creatorText={ username }
                     creatorUrl={ `${ location }/${ username }` }
                     pageText={ 'Services' }
-                    pageUrl={ `${ location }/services/${ id }` }
+                    pageUrl={ `${ location }/services` }
                 />
                 <MainBanner
                     title={ title }
