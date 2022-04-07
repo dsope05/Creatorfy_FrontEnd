@@ -49,7 +49,7 @@ const MainBanner: FC<MainProps> = ({ title, onDigg, starScore, reviewScore, even
                         activeColor='magenta'
                     />
                     <p>
-                        {starScore} ({reviewScore} Reviews)
+                        { starScore } ({ reviewScore } Reviews)
                     </p>
                 <ShareButton
                     url={ url }

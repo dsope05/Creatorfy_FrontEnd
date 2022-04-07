@@ -1,4 +1,5 @@
 import React, { FC } from "react";
+import Link from 'next/link';
 import Image from 'next/image';
 import styles from '../../styles/Banner.module.css';
 import gravatar from '../../public/gravatar.png';
@@ -15,17 +16,17 @@ const MiniBanner: FC<MiniProps> = ({ creatorText, creatorUrl, pageText, pageUrl 
                 />
             </div>
             <small className={ styles.small }>
-                <a
-                    href={ creatorUrl }
-                    className={ styles.anchor }>
+                <Link href={ creatorUrl }>
+                    <a className={ styles.anchor }>
                         { `@${ creatorText }` }
-                </a>
+                    </a>
+                </Link>
                 { " > " }
-                <a
-                    href={ pageUrl }
-                    className={ styles.anchor }>
-                    { pageText }
-                </a>
+                <Link href={ pageUrl }>
+                    <a  className={ styles.anchor }>
+                        { pageText }
+                    </a>
+                </Link>
             </small>
         </div>
     )
