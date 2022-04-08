@@ -55,7 +55,8 @@ const Banner: FC = (): JSX.Element => {
                     creatorText={ username }
                     creatorUrl={ `${ location }/${ username }` }
                     pageText={ 'Services' }
-                    pageUrl={ `${ location }/services` }
+                    // TODO: update pageUrl value once routes are finalized.
+                    pageUrl={ `${ location }/${ username }` }
                 />
                 <MainBanner
                     title={ title }

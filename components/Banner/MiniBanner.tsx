@@ -9,7 +9,7 @@ const MiniBanner: FC<MiniProps> = ({ creatorText, creatorUrl, pageText, pageUrl 
         <div className={ styles.miniHeader }>
             <div className={ styles.gravatarDiv }>
                 <Image
-                // Test gravatar is temporarily placed until gravatar url resource is found.
+                // TODO: update gravatar to pull dynamically once added to backend.
                     src={ gravatar }
                     alt='Gravatar Image'
                 />
