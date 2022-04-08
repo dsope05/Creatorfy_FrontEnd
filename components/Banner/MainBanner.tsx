@@ -14,7 +14,7 @@ const MainBanner: FC<MainProps> = ({ title, onDigg, starScore, reviewScore, even
     }, []);
 
     const preposition: string = eventable ? 'with' : 'by';
-    
+
     return(
         <div className={ styles.mainBannerParent }>
             <div className={ styles.diggDiv }>
@@ -49,7 +49,7 @@ const MainBanner: FC<MainProps> = ({ title, onDigg, starScore, reviewScore, even
                         activeColor='magenta'
                     />
                     <p>
-                        ({reviewScore} Reviews)
+                        { starScore } ({ reviewScore } Reviews)
                     </p>
                 <ShareButton
                     url={ url }
