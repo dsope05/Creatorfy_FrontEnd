@@ -1,0 +1,29 @@
+/**
+ * Overwriting Bootstrap SCSS variables to include our own themes.
+ * See Also: https://getbootstrap.com/docs/5.0/customize/color/#theme-colors
+ */
+
+@import "./colors";
+
+// Global Theme Variables
+$body-bg: $creatorfy-background;
+$input-focus-border-color: $creatorfy-faint-pink;
+$input-btn-focus-color: $creatorfy-faint-pink;
+
+// Accordion customization (https://getbootstrap.com/docs/5.0/components/accordion/#variables).
+$accordion-button-active-bg: lighten($creatorfy-light-light-pink, 50%);
+$accordion-button-active-color: $creatorfy-pink;
+$accordion-border-width: 0;
+
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+.btn-primary {
+  @include button-variant(
+                  $creatorfy-pink, // $background
+                  $creatorfy-pink, // $border
+                  white, // $color
+                  darken($creatorfy-pink, 5%), // $hover-background
+                  darken($creatorfy-pink, 5%), // $hover-border
+                  white // $hover-color
+  );
+}
