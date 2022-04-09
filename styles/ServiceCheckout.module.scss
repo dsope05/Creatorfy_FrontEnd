@@ -1,4 +1,52 @@
+@import '../node_modules/bootstrap/scss/functions';
+@import '../node_modules/bootstrap/scss/variables';
+@import '../node_modules/bootstrap/scss/mixins';
+@import '../node_modules/bootstrap/scss/grid';
+
+@import 'colors';
+
 .carouselImg {
   display: block;
+  width: 100%;
+  border-radius: 8px;
+}
+
+.serviceTiersContainer {
+  width: 100%;
+  border-radius: 8px;
+  box-sizing: border-box;
+  background-color: #ffffff;
+  border: 1px solid #dadbdd;
+}
+
+.stickyScroll {
+  @include media-breakpoint-up(lg) {
+    position: fixed;
+    top: 48px;
+    width: 457px;
+  }
+  // Since fixed is relative to the viewport, we need to hard-code the width
+  // after the position is changed. The position is changed based off of
+  // container widths. See https://getbootstrap.com/docs/5.0/layout/containers/.
+  //@include media-breakpoint-up(md) {
+  //  width: 337px;
+  //}
+  @include media-breakpoint-up(xl) {
+    width: 546px;
+  }
+  @include media-breakpoint-up(xxl) {
+    width: 637px;
+  }
+}
+
+.serviceCardInfo {
+  background-color: #ffffff;
+  margin: 40px 0;
+  padding: 36px 24px;
+  border-radius: 8px;
+  border: 1px solid pink;
+}
+
+.serviceBtn {
   width: 100%;
 }
