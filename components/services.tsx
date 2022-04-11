@@ -70,11 +70,14 @@ const MerchView= () => (
     MerchView
   </div>
 );
+interface ServicesProps {
+  handle: string;
+}
 
-export default function Services() {
+export default function Services({ handle }: ServicesProps) {
   const [selectedService, selectMenu] = useState('services');
   const { loading, error, data } = useQuery(USER_CREATOR, {
-    variables: { id: 3 }
+    variables: { handle }
   });
   const services = data?.userCreators?.items?.[0]?.services ?? [];
   const servicesDisplay = services.map((service) => {

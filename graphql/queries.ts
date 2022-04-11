@@ -1,8 +1,8 @@
 import { gql } from '@apollo/client';
 
 export const USER_CREATOR = gql`
-    query userCreators($id: [Int]) {
-    userCreators(id: $id){
+    query userCreators($handle: String) {
+    userCreators(handle: $handle){
         error
         items {
             firstName

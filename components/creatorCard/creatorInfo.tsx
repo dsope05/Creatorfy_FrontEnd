@@ -4,11 +4,17 @@ import CreatorButton from '../utils/button'
 import { useQuery } from '@apollo/client';
 import { USER_CREATOR } from '../../graphql/queries';
 
-export default function CreatorInfo() {
+interface CreatorInfoProps {
+  handle: string;
+}
+
+export default function CreatorInfo({
+  handle,
+}: CreatorInfoProps) {
   const { loading, error, data } = useQuery(USER_CREATOR, {
-    variables: { id: 3 }
+    variables: { handle }
   });
-  const { email, firstName, lastName, handle, extraPublic: { country = '', verified_info = {} } = {} } = data?.userCreators?.items?.[0] ?? {};
+  const { email, firstName, lastName, extraPublic: { country = '', verified_info = {} } = {} } = data?.userCreators?.items?.[0] ?? {};
   const socialMediaIcons = Object.keys(verified_info).map(mediaApp => {
     return (
       <div className={styles.icon}>
