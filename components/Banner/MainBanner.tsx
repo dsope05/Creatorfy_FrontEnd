@@ -20,7 +20,7 @@ const MainBanner: FC<MainProps> = ({ title, onDigg, starScore, reviewScore, even
             <div className={ styles.diggDiv }>
                 <Image
                     layout='fixed'
-                    height={37.08}
+                    height={32.17}
                     width={32.17}
                     className={ styles.diggIcon }
                     src={ diggButton }

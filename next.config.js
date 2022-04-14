@@ -1,3 +1,6 @@
 module.exports = {
-  reactStrictMode: true
+  images: {
+    domains: ['creatorfy.s3.amazonaws.com'],
+  },
+  reactStrictMode: true,
 }

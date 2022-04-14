@@ -28,7 +28,8 @@ export interface MiniProps {
   creatorText: string,
   creatorUrl: string,
   pageText: string,
-  pageUrl: string
+  pageUrl: string,
+  gravatarUrl: string
 };
 
 export interface MainProps {

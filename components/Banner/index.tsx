@@ -32,7 +32,8 @@ const Banner: FC = (): JSX.Element => {
             variables: { id: Number(id) }
         })
         const username: string = handle?.userCreators?.items[0]?.handle;
-
+        const gravatarUrl = handle?.userCreators?.items[0]?.extraPublic?.profile_photo;
+        
         if(!username){
             return(<></>)
         }
@@ -57,6 +58,7 @@ const Banner: FC = (): JSX.Element => {
                     pageText={ 'Services' }
                     // TODO: update pageUrl value once routes are finalized.
                     pageUrl={ `${ location }/${ username }` }
+                    gravatarUrl={ gravatarUrl }
                 />
                 <MainBanner
                     title={ title }

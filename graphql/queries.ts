@@ -57,7 +57,10 @@ export const GET_SERVICE_OWNER = gql`
         userCreators(id:$id){
             error,
             items {
-                handle
+                handle,
+                extraPublic {
+                    profile_photo
+                }
             }           
         }
     }
