@@ -1,4 +1,4 @@
-import BookMe from '../../components/BookMe';
+import BookMe from '../../../components/BookMe';
 
 const BookMePreview = () => {
   const createAppointments = (newAppointments: Date[]): void => {
