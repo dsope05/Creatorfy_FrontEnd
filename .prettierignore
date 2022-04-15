@@ -1,0 +1,6 @@
+# .prettierignore file. Some things just don't want to be pretty.
+.next
+dist
+node_modules/
+.vscode
+.idea
