@@ -1,5 +1,5 @@
 import { NextPage } from 'next';
-import Banner from '../../components/Banner/index';
+import Banner from '../../../components/Banner/index';
 import styles from '../../styles/ServicePage.module.css';
 
 const ServicePage: NextPage = (): JSX.Element => {
