@@ -1,9 +1,9 @@
 import { useContext } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import styles from '../../../styles/Onboarding.module.css';
-import CreatorInput from '../../../components/utils/input';
-import CreatorButton from '../../../components/utils/button';
+import styles from '../../styles/Onboarding.module.css';
+import CreatorInput from '../../components/utils/input';
+import CreatorButton from '../../components/utils/button';
 
 const Onboarding = () => {
   return (
