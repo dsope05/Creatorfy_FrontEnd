@@ -1,5 +1,3 @@
-import { useContext } from 'react';
-import Link from 'next/link';
 import Image from 'next/image';
 import styles from '../../styles/Onboarding.module.css';
 import CreatorInput from '../../components/utils/input';
@@ -11,7 +9,7 @@ const Onboarding = () => {
       <Image alt="CreatorFy Logo" src="/logo.svg" width="200" height="100" />
       <p className={styles.signUp}>Sign up with Creatorfy</p>
       <p className={styles.welcome}>Welcome to the Creator Sign-up page!</p>
-      <p className={styles.getStarted}>Let's get started.</p>
+      <p className={styles.getStarted}>Le&lsquo;s get started.</p>
       <CreatorInput placeholder="Email" />
       <CreatorInput placeholder="Password" />
       <CreatorInput placeholder="Confirm Password" />
