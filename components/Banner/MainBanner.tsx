@@ -46,7 +46,7 @@ const MainBanner: FC<MainProps> = ({ title, onDigg, starScore, reviewScore, even
                         count={ 5 }
                         isHalf={ true }
                         color='#f0f0f0'
-                        activeColor='magenta'
+                        activeColor='#D800B9'
                     />
                     <p>
                         { starScore } ({ reviewScore } Reviews)

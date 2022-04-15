@@ -11,7 +11,7 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-    border: 2px solid rgb(0, 140, 255);
+    border: 2px solid #D800B9;
     border-radius: 30px;
 }
 
@@ -41,7 +41,7 @@
 
 .mainSpan,
 .statsAndShare > p {
-    color:magenta;
+    color:#D800B9;
 }
 
 .statsAndShare {

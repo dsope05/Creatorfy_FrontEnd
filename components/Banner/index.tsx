@@ -13,6 +13,7 @@ const Banner: FC = (): JSX.Element => {
 
     useEffect(() => {
         setLocation(window.location.origin)
+        console.log(window.location)
     }, [])
 
     const { query }: NextRouter = useRouter();
@@ -56,8 +57,7 @@ const Banner: FC = (): JSX.Element => {
                     creatorText={ username }
                     creatorUrl={ `${ location }/${ username }` }
                     pageText={ 'Services' }
-                    // TODO: update pageUrl value once routes are finalized.
-                    pageUrl={ `${ location }/${ username }` }
+                    pageUrl={ `${ location }/${ username }/services` }
                     gravatarUrl={ gravatarUrl }
                 />
                 <MainBanner
