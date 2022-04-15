@@ -3,15 +3,12 @@ import Image from 'next/image'
 import CreatorButton from '../utils/button'
 import { useQuery } from '@apollo/client';
 import { USER_CREATOR } from '../../graphql/queries';
+import { useRouter } from 'next/router';
 
-interface CreatorInfoProps {
-  handle: string;
-}
-
-export default function CreatorInfo({
-  handle,
-}: CreatorInfoProps) {
+export default function CreatorInfo() {
+  const { profile: handle } = useRouter().query;
   const { loading, error, data } = useQuery(USER_CREATOR, {
+    skip: !handle,
     variables: { handle }
   });
   const { email, firstName, lastName, extraPublic: { country = '', verified_info = {} } = {} } = data?.userCreators?.items?.[0] ?? {};

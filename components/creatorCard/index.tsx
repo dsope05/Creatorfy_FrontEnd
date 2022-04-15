@@ -4,13 +4,7 @@ import CreatorButton from '../utils/button'
 import CreatorInfo from './creatorInfo'
 import CreatorRatings from './ratings'
 
-interface CreatorCardProps {
-  handle: string;
-}
-
-export default function CreatorCard({
-  handle,
-}: CreatorCardProps) {
+export default function CreatorCard() {
 
   return (
     <div className={styles.container}>
@@ -29,9 +23,7 @@ export default function CreatorCard({
           <CreatorButton onClick={() =>{}} type="secondary" text="Donate" />
         </div>
       </div>
-      <CreatorInfo
-          handle={handle}
-       />
+      <CreatorInfo />
       <CreatorRatings />
     </div>
   )
