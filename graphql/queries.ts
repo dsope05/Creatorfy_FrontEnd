@@ -1,8 +1,8 @@
 import { gql } from '@apollo/client';
 
 export const USER_CREATOR = gql`
-    query userCreators($id: [Int]) {
-    userCreators(id: $id){
+    query userCreators($handle: String) {
+    userCreators(handle: $handle){
         error
         items {
             firstName
@@ -11,27 +11,31 @@ export const USER_CREATOR = gql`
             email
             userType
             services {
-            id
-            title
-            uuid
-            tiers {
+                id
                 title
-                price
-                currency
+                uuid
+                tiers {
+                    title
+                    price
+                    currency
+                    description
+                    addOns
+                }
                 description
-                addOns
-            }
-            description
-            reviewAverage
+                reviewAverage
+                photos {
+                    title
+                    url
+                }
             }
             extraPublic {
-            profile_photo
-            country
-            language
-            stat_cards
-            category
-            subCategories
-            verified_info
+                profile_photo
+                country
+                language
+                stat_cards
+                category
+                subCategories
+                verified_info
             }
         }
         }

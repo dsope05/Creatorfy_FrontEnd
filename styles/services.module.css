@@ -9,17 +9,16 @@
   margin-top: 40px;
   display: grid;
   grid-gap: 1rem;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, 393px);
   justify-items: center;
 }
 
 .service {
   border: 1px solid #FFBBF5;
-  width: 100%;
+  width: 393px;
   height: 579px;
   background-color: white;
   border-radius: 10px;
-  padding: 20px;
 }
 
 .serviceImageWrapper {
@@ -60,31 +59,57 @@
 
 .starWrapper {
   margin-right: 3px;
+  margin-left: 25px;
+  margin-top: 37px;
   display: flex;
   align-items: center;
 }
 
+.titleWrapper {
+  display: flex;
+
+}
+
 .serviceTitle {
+  height: 47px;
   font-weight: 600;
   font-size: 20px;
   margin-top: 0px;
 }
 
+.container {
+  display: flex;
+  flex-direction: column;
+}
 .titleContainer {
   display: flex;
+  flex-direction: row;
 }
 
 .logoImageWrapper {
+  margin-left: 10px;
   width: 95px;
 }
 
+.rating {
+  display: flex;
+  margin-left: 5px;
+}
+
+.reviews {
+  margin-left: 5px;
+}
+
 .serviceDescription {
+  margin-left: 25px;
   width: 250px;
+  height: 58px;
 }
 
 .startingAt{
   font-weight: 400;
   font-size: 16;
+  margin-left: auto;
   margin-right: 10px;
 }
 
@@ -98,6 +123,7 @@
 .price {
   font-weight: 500;
   font-size: 30px;
+  margin-right: 10px;
 }
 
 .merchContainer {
