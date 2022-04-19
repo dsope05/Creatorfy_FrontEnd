@@ -13,9 +13,9 @@ const ReviewCard = ({
   reviewTime,
   reviewText,
   reviewerName,
-  reviewerGravatarImage,
   onUpvote,
   onDownvote,
+  reviewerGravatarImage = '',
 }: ReviewCardProps) => {
   const formatReviewerName = (fullName: string): string => {
     const [firstName, lastName] = fullName.split(' ');
@@ -24,13 +24,17 @@ const ReviewCard = ({
 
   return (
     <article className={styles.reviewCard}>
-      <Image
-        className={styles.reviewerImage}
-        alt={`${reviewerName} gravatar image`}
-        src={reviewerGravatarImage || '/creatorCardImage.jpg'}
-        width="48"
-        height="48"
-      />
+      {reviewerGravatarImage ? (
+        <Image
+          className={styles.reviewerImage}
+          alt={`${reviewerName} gravatar image`}
+          src={reviewerGravatarImage}
+          width="48"
+          height="48"
+        />
+      ) : (
+        <div aria-hidden className={styles.placeholderReviewImage} />
+      )}
       <div className={styles.reviewCardContent}>
         <div className={styles.reviewCardHeader}>
           <h3 className={styles.reviewerName}>
@@ -46,9 +50,9 @@ const ReviewCard = ({
               imageAlt="thumbs up icon"
               imageSrc="/thumb.png"
               buttonClass={styles.reviewCardVoteButton}
-              imageClass={styles.upvoteIcon}
               width="16"
               height="16"
+              isPink
             />
             <IconButton
               onClick={onDownvote}

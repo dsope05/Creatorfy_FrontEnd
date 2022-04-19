@@ -2,7 +2,7 @@ import CreatorfyStars from '../CreatorfyStars';
 import ReviewCard from './ReviewCard';
 import ReviewTag from './ReviewTag';
 import { ModalContainer } from '../providers/ModalProvider';
-import type { ReviewTagData, Review, OnVoteParameters } from '../utils/types'
+import type { ReviewTagData, Review, DiggReviewParameters } from '../utils/types'
 import styles from '../../styles/ReviewsModal.module.css';
 
 interface ReviewsProps {
@@ -11,8 +11,8 @@ interface ReviewsProps {
   reviewCount: number;
   reviewTags: ReviewTagData;
   canCurrentUserReview: boolean;
-  onUpvote: (voteParameters: Omit<OnVoteParameters, 'isHelpful'>) => void;
-  onDownvote: (voteParameters: Omit<OnVoteParameters, 'isHelpful'>) => void;
+  onUpvote: (voteParameters: Omit<DiggReviewParameters, 'isHelpful'>) => void;
+  onDownvote: (voteParameters: Omit<DiggReviewParameters, 'isHelpful'>) => void;
   showAllReviews: () => void;
   createReview: () => void;
 }

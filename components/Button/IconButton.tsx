@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import styles from '../../styles/IconButton.module.css';
 
 interface IconButtonProps {
   onClick: () => void;
@@ -9,6 +10,7 @@ interface IconButtonProps {
   imageClass?: string;
   width?: string;
   height?: string;
+  isPink?: boolean;
 }
 
 const IconButton = ({
@@ -16,14 +18,15 @@ const IconButton = ({
   ariaLabel,
   imageAlt,
   imageSrc,
-  buttonClass,
+  buttonClass = styles.button,
   imageClass,
   width = '20',
   height = '20',
+  isPink,
 }: IconButtonProps) => (
   <button onClick={onClick} className={buttonClass} aria-label={ariaLabel}>
     <Image
-      className={imageClass}
+      className={imageClass ? imageClass : isPink ? styles.pinkIcon : ''}
       aria-hidden
       alt={imageAlt}
       src={imageSrc}
