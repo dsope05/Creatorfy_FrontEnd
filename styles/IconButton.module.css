@@ -1,0 +1,14 @@
+.button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4px 6px;
+  transition: 0.3s;
+}
+
+.pinkIcon {
+  filter: invert(43%) sepia(83%) saturate(3507%) hue-rotate(281deg) brightness(79%) contrast(95%);
+}

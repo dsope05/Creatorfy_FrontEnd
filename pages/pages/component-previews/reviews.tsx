@@ -1,15 +1,12 @@
 import { useMutation } from '@apollo/client';
 import ReviewsModal from '../../../components/ReviewsModal';
-import {
-  MODAL_TYPES,
-  useModalContext,
-} from '../../../components/providers/ModalProvider';
-import { OnVoteParameters } from '../../../components/utils/types';
-import { VOTE_FOR_REVIEW } from '../../../graphql/mutations';
+import { MODAL_TYPES, useModalContext } from '../../../components/providers/ModalProvider';
+import { DiggReviewParameters } from '../../../components/utils/types';
+import { DIGG_REVIEW } from '../../../graphql/mutations';
 
 const ReviewsPreview = () => {
   const { modalType } = useModalContext();
-  const [voteForReview] = useMutation(VOTE_FOR_REVIEW);
+  const [diggReview] = useMutation(DIGG_REVIEW);
 
   const reviewTags = {
     Value: 4.5,
@@ -23,12 +20,14 @@ const ReviewsPreview = () => {
       reviewTime: new Date(),
       reviewerName: 'Hannah Abc',
       reviewText: 'Comment lorem ipsum dolor sit amet, consectetur.',
+      reviewerGravatarImage: '/creatorCardImage.jpg'
     },
     {
       id: 2,
       reviewTime: new Date(),
       reviewerName: 'Hannah Abc',
       reviewText: 'Comment lorem ipsum dolor sit amet, consectetur.',
+      reviewerGravatarImage: '/creatorCardImage.jpg'
     },
     {
       id: 3,
@@ -47,40 +46,25 @@ const ReviewsPreview = () => {
       reviewTime: new Date(),
       reviewerName: 'Hannah Abc',
       reviewText: 'Comment lorem ipsum dolor sit amet, consectetur.',
+      reviewerGravatarImage: '/creatorCardImage.jpg'
     },
   ];
 
-  const onVote = ({ reviewId, isHelpful, reviewType }: OnVoteParameters) => {
-    voteForReview({
+  const onVote = ({ reviewId, isHelpful, reviewType }: DiggReviewParameters) => {
+    diggReview({
       variables: {
         input: {
           id: reviewId,
           helpful: isHelpful,
           reviewType,
-        },
-      },
+        }
+      }
     });
   };
 
-  const onUpvote = ({
-    reviewId,
-    reviewType,
-  }: Omit<OnVoteParameters, 'isHelpful'>) =>
-    onVote({
-      isHelpful: true,
-      reviewId,
-      reviewType,
-    });
+  const onUpvote = ({ reviewId, reviewType }: Omit<DiggReviewParameters, 'isHelpful'>) => onVote({ isHelpful: true, reviewId, reviewType });
 
-  const onDownvote = ({
-    reviewId,
-    reviewType,
-  }: Omit<OnVoteParameters, 'isHelpful'>) =>
-    onVote({
-      isHelpful: false,
-      reviewId,
-      reviewType,
-    });
+  const onDownvote = ({ reviewId, reviewType }: Omit<DiggReviewParameters, 'isHelpful'>) => onVote({ isHelpful: false, reviewId, reviewType });
 
   return (
     <ReviewsModal

@@ -1,0 +1,46 @@
+.headerContainer {
+  border-radius: 10px;
+  background-color: white;
+  padding: 24px;
+  width: 100%;
+  border: 1px solid #F7DBF6;
+}
+
+.titleSection {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title {
+  margin: 0;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.creator {
+  color: #C637B3;
+}
+
+.likeButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4px 6px;
+  margin-bottom: 24px;
+  transition: 0.3s;
+}
+
+.starsContainer {
+  display: flex;
+}
+
+.creatorfyStarsText {
+  color: #C637B3;
+  font-size: 14px;
+  font-weight: bold;
+  margin: 0 8px 0 4px;
+}
