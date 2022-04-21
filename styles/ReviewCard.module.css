@@ -8,6 +8,11 @@
   border-radius: 100%;
 }
 
+.placeholderReviewImage {
+  width: 48px;
+  height: 48px;
+}
+
 .reviewCardContent {
   display: flex;
   flex-direction: column;
@@ -56,7 +61,7 @@
   margin-right: 0;
 }
 
-.upvoteIcon, .downvoteIcon {
+.downvoteIcon {
   filter: invert(43%) sepia(83%) saturate(3507%) hue-rotate(281deg) brightness(79%) contrast(95%);
 }
 

@@ -5,6 +5,7 @@ import CreatorInfo from './creatorInfo'
 import CreatorRatings from './ratings'
 
 export default function CreatorCard() {
+
   return (
     <div className={styles.container}>
       <div className={styles.imageContainer}>
@@ -18,8 +19,8 @@ export default function CreatorCard() {
          />
         </div>
         <div className={styles.creatorBtns}>
-          <CreatorButton className={styles.businessBtn} type="primary" text="Business" />
-          <CreatorButton type="secondary" text="Donate" />
+          <CreatorButton onClick={() =>{}} className={styles.businessBtn} type="primary" text="Business" />
+          <CreatorButton onClick={() =>{}} type="secondary" text="Donate" />
         </div>
       </div>
       <CreatorInfo />

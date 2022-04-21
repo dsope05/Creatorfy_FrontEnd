@@ -3,12 +3,15 @@ import Image from 'next/image'
 import CreatorButton from '../utils/button'
 import { useQuery } from '@apollo/client';
 import { USER_CREATOR } from '../../graphql/queries';
+import { useRouter } from 'next/router';
 
 export default function CreatorInfo() {
+  const { profile: handle } = useRouter().query;
   const { loading, error, data } = useQuery(USER_CREATOR, {
-    variables: { id: 3 }
+    skip: !handle,
+    variables: { handle }
   });
-  const { email, firstName, lastName, handle, extraPublic: { country = '', verified_info = {} } = {} } = data?.userCreators?.items?.[0] ?? {};
+  const { email, firstName, lastName, extraPublic: { country = '', verified_info = {} } = {} } = data?.userCreators?.items?.[0] ?? {};
   const socialMediaIcons = Object.keys(verified_info).map(mediaApp => {
     return (
       <div className={styles.icon}>

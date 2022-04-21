@@ -1,4 +1,4 @@
-import ReactStars from "react-rating-stars-component";
+import ReactStars from 'react-rating-stars-component';
 import styles from '../../styles/ReviewTag.module.css';
 
 interface ReviewTagProps {

@@ -12,7 +12,7 @@ export interface ReviewTagData {
   Timeliness: number;
 }
 
-export interface OnVoteParameters {
+export interface DiggReviewParameters {
   reviewId: number,
   isHelpful: boolean,
   reviewType: string;
@@ -48,3 +48,8 @@ export interface ServiceInfo {
   title: string,
   serviceType: string
 };
+
+export interface BreadcrumbLink {
+  text: string;
+  url?: string;
+}

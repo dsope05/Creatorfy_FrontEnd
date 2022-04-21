@@ -2,7 +2,15 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
-First, run the development server:
+First, set the project's environment variables
+
+```
+cp .env.example .env
+```
+
+Replace `NEXT_PUBLIC_DEVELOPER_AUTH_TOKEN` with the authentication token received during the backend service's setup.
+
+Second, run the development server:
 
 ```bash
 npm run dev
