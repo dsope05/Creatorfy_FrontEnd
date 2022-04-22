@@ -3,6 +3,79 @@
     font-weight: 700;
 }
 
+.onboardingTitleOne {
+    font-size: 48px;
+    width: 477px;
+    font-weight: 700;
+    display: flex;
+    text-align: center;
+}
+
+.backBtn {
+    margin-top: 30px;
+}
+
+.dontWorryCard {
+    margin-top: 46px;
+    margin-bottom: 47px;
+    font-size: 18px;
+    font-weight: 400;
+    max-width: 726px;
+    height: 92px;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 15px;
+}
+
+.setUpList {
+    margin-top: 3px;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.onboardingOneCard {
+    width: 356px;
+    height: 373px;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 10px;
+}
+
+.setUp {
+    font-size: 24px;
+    font-weight: 700;
+    margin-top: 60px;
+}
+
+.setUpMerch {
+    margin-right: auto;
+    margin-left: 10px;
+    margin-top: 40px;
+
+}
+
+.cardIcon {
+    font-size: 48px;
+    margin-top: 20px;
+}
+
+.cardContainer {
+    display: flex;
+    grid-gap: 2rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+
+
 .welcome {
     font-size: 20px;
     font-weight: 400;
@@ -22,9 +95,10 @@
     align-items: center;
     background-color: #F6F6F6;
     max-width: 1440px;
+    margin: auto;
     min-width: 533px;
     height: 100%;
-    padding: 20px 100px 0px;
+    padding: 70px 100px;
 }
 
 .respect {
