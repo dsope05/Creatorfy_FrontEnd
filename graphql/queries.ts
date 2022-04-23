@@ -41,3 +41,59 @@ export const USER_CREATOR = gql`
         }
     }
 `;
+
+export const USER_SERVICE = gql`
+  query ($id: [Int]) {
+    services(id: $id) {
+      items {
+        id
+        uuid
+        title
+        photos {
+          title
+          url
+        }
+        description
+        reviewAverage
+        serviceType
+        meetable
+        startingAt
+        tiers {
+          title
+          price
+          currency
+          addOns
+          description
+        }
+        questions {
+          question
+          answer
+        }
+      }
+      error
+    }
+  }
+`;
+
+export interface UserServiceVariables {
+  id: number;
+}
+
+export interface UserServiceData {
+  services: {
+    error: string;
+    items: {
+      id: string;
+      description: string;
+      meetable: boolean;
+      photos: {
+        title: string;
+        url: string;
+      }[];
+      questions: {
+        question: string;
+        answer: string;
+      }[];
+    }[];
+  };
+}

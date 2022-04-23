@@ -1,12 +1,20 @@
-import { useRouter } from 'next/router';
+import { useRouter, Router } from 'next/router';
 import { useEffect, useRef, useState } from 'react';
 import Carousel from 'react-bootstrap/Carousel';
 import Accordion from 'react-bootstrap/Accordion';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import ServiceTiersCard from '../../../components/ServiceCheckout/ServiceTiersCard';
+import {
+  USER_CREATOR,
+  USER_SERVICE,
+  UserServiceData,
+  UserServiceVariables,
+} from '../../../graphql/queries';
 
 import styles from '../../../styles/ServiceCheckout.module.scss';
+import { useQuery } from '@apollo/client';
+import Loading from '../../../components/loading';
 
 function renderCarousel() {
   return (
@@ -68,12 +76,28 @@ function renderFAQAccordian() {
 }
 
 export default function ServiceCheckout() {
-  const { userId, serviceId } = useRouter().query;
+  const router = useRouter();
+  const { userId, serviceId } = router.query;
   const [isStickyScroll, setIsStickyScroll] = useState(false);
   const [serviceTiersCardYOffset, setServiceTiersCardYOffset] =
     useState(undefined);
 
   const serviceTiersContainerRef = useRef(null);
+
+  const { loading, error, data } = useQuery<
+    UserServiceData,
+    UserServiceVariables
+  >(USER_SERVICE, {
+    variables: { id: Number(serviceId) },
+  });
+
+  // If there's an error, then bail out to seller's service page
+  // TODO(ahmed.elzeiny): If specified seller doesn't match retrieved data also bail. Ask how to get seller handle from
+  // backend.
+  if (error) {
+    console.error(error);
+    // router.push(`/pages/${userId}`);
+  }
 
   useEffect(() => {
     const handleScroll = () => {
@@ -87,12 +111,9 @@ export default function ServiceCheckout() {
         );
       }
       if (serviceTiersContainerRef.current) {
-        if (!isStickyScroll && window.pageYOffset >= serviceTiersCardYOffset) {
+        if (!isStickyScroll && window.scrollY >= serviceTiersCardYOffset) {
           setIsStickyScroll(true);
-        } else if (
-          isStickyScroll &&
-          window.pageYOffset < serviceTiersCardYOffset
-        ) {
+        } else if (isStickyScroll && window.scrollY < serviceTiersCardYOffset) {
           setIsStickyScroll(false);
         }
       }
@@ -110,6 +131,10 @@ export default function ServiceCheckout() {
     serviceTiersCardYOffset,
     setServiceTiersCardYOffset,
   ]);
+
+  if (loading || error) {
+    return <Loading />;
+  }
 
   return (
     <>
