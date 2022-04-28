@@ -9,3 +9,13 @@ export const DIGG_REVIEW = gql`
     }
   }
 `;
+
+export const DIGG_MUTATION = gql`
+  mutation diggReview($input: reviewHelpfulorNot!) {
+    diggReview(input: $input){
+      id
+      status
+      error
+    }
+  }
+`;

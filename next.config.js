@@ -17,5 +17,8 @@ async function rewrites() {
 module.exports = {
   trailingSlash: true, // "/query/graphql" => "/query/graphql/"
   reactStrictMode: true,
+  images: {
+    domains: ['assets.example.com', "creatorfy.s3.amazonaws.com"]
+  },
   rewrites,
-};
+}

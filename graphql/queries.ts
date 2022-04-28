@@ -1,6 +1,4 @@
 import { gql, useQuery } from '@apollo/client';
-import { useApollo } from './useApollo';
-import { TypedDocumentNode } from '@apollo/client/core';
 import { QueryHookOptions } from '@apollo/client/react/types/types';
 
 export const USER_CREATOR = gql`
@@ -115,3 +113,25 @@ export const useServiceQuery = (
     options
   );
 };
+
+
+export const GET_BANNER_INFO = gql`
+    query userCreators($handle: String) {
+        userCreators(handle:$handle){
+            error,
+            items {
+            id,
+            handle,
+            services {
+                id,
+                title,
+                reviewAverage,
+                meetable,
+            }
+            extraPublic {
+                profile_photo
+            }
+            }
+        }
+        }
+`

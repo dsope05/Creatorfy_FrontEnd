@@ -6,14 +6,6 @@ export interface CarouselImgProps {
   url: string;
 }
 
-function CarouselImg(props: CarouselImgProps) {
-  return (
-    <Carousel.Item>
-      <img className={styles.carouselImg} src={props.url} alt={props.title} />
-    </Carousel.Item>
-  );
-}
-
 export default function ServiceCarousel(props: { images: CarouselImgProps[] }) {
   return (
     <Carousel slide={true} controls={true} touch={true}>
