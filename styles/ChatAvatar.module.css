@@ -1,0 +1,9 @@
+.chatAvatar {
+  border: 1px solid #C637B3;
+  border-radius: 100%;
+}
+
+.defaultChatAvatar {
+  filter: invert(43%) sepia(83%) saturate(3507%) hue-rotate(281deg) brightness(79%) contrast(95%);
+  border-radius: 100%;
+}

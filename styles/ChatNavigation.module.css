@@ -1,0 +1,16 @@
+.chatNavigationContainer {
+  display: flex;
+  flex-direction: column;
+  box-shadow: 10px;
+}
+
+.chatNavigationButton {
+  background: red;
+  border: 1px solid black;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4px 6px;
+  transition: 0.3s;
+}

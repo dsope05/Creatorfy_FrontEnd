@@ -1,0 +1,11 @@
+.chatMessengerContainer {
+  display: flex;
+  max-width: 875px;
+  background: white;
+}
+
+.chatBox {
+  display: flex;
+  flex-direction: column;
+  max-width: 600px;
+}

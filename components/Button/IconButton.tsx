@@ -26,7 +26,7 @@ const IconButton = ({
 }: IconButtonProps) => (
   <button onClick={onClick} className={buttonClass} aria-label={ariaLabel}>
     <Image
-      className={imageClass ? imageClass : isPink ? styles.pinkIcon : ''}
+      className={imageClass || isPink ? styles.pinkIcon : ''}
       aria-hidden
       alt={imageAlt}
       src={imageSrc}

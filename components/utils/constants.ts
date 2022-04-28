@@ -1,3 +1,5 @@
+export const CREATOR = 'CREATOR';
+
 export enum TimeZone {
   UTC = 'UTC',
   'Pacific/Midway' = 'Pacific/Midway',
