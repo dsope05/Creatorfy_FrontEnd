@@ -1,27 +1,31 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 import { Check2Square } from 'react-bootstrap-icons';
 import styles from '../../styles/ServiceTiersCard.module.scss';
 
 interface TierDescription {
-  rank: string;
-  money: string;
+  title: string;
   description: string;
-  features: string[];
+  price: string;
+  currency: string;
+  addOns: string[];
 }
 
 interface SerivceTierListProps {
-  rank: string;
-  features: string[];
+  title: string;
+  addOns: string[];
   active: boolean;
 }
 
-function ServiceTierFeatures({ rank, features, active }: SerivceTierListProps) {
+function ServiceTierFeatures({ title, addOns, active }: SerivceTierListProps) {
+  if (!addOns) {
+    return <div key={title} />;
+  }
   return (
-    <div key={rank}>
-      <strong>{rank}:</strong>
+    <div key={title}>
+      <strong>{title}:</strong>
       <ul className={styles.tiersList}>
-        {features.map((f, idx) => (
+        {addOns.map((f, idx) => (
           <li
             className={`${styles.tiersFeatures} ${
               active ? styles.activeTiersFeatures : ''
@@ -37,51 +41,27 @@ function ServiceTierFeatures({ rank, features, active }: SerivceTierListProps) {
   );
 }
 
-export default function ServiceTiersCard(props) {
+function formatTierTitle(title: string): string {
+  if (!title) return title;
+  return title[0].toUpperCase() + title.substring(1).toLowerCase();
+}
+
+export default function ServiceTiersCard(props: { tiers: TierDescription[] }) {
   const [tierIdx, setTierIdx] = useState(0);
 
-  const tiers: TierDescription[] = [
-    {
-      rank: 'Bronze',
-      money: '$50',
-      description:
-        'I will play a 15 minute practice session of Smash on the Switch',
-      features: ['Discord call during playtime', 'Your choice of 1 character'],
-    },
-    {
-      rank: 'Silver',
-      money: '$75',
-      description:
-        'I will play a 30 minute practice session of Smash on the Switch',
-      features: [
-        'I will stream our session on Twitch',
-        'I will give you handwritten notes about your performance',
-      ],
-    },
-    {
-      rank: 'Gold',
-      money: '$100',
-      description:
-        'I will play a one hour practice session of Smash on the Switch',
-      features: [
-        'I will review vods of your playstyle beforehand, and have notes ready',
-      ],
-    },
-  ];
-
-  const selectedTier = tiers[tierIdx];
+  const selectedTier = props.tiers[tierIdx];
 
   return (
     <div>
       <div className={styles.tiersContainer}>
-        {tiers.map((t, tIdx) => (
+        {props.tiers.map((t, tIdx) => (
           <div
             className={`${styles.tiersHeader}
               ${tIdx === tierIdx ? styles.activeTierHeader : ''}`}
-            key={t.rank}
+            key={t.title}
             onClick={() => setTierIdx(tIdx)}
           >
-            {t.rank}
+            {formatTierTitle(t.title)}
           </div>
         ))}
       </div>
@@ -91,15 +71,15 @@ export default function ServiceTiersCard(props) {
             <strong>{selectedTier.description}</strong>
           </p>
           <p>
-            <span className={styles.tierCost}>{selectedTier.money}</span>
+            <span className={styles.tierCost}>{`$${selectedTier.price}`}</span>
           </p>
         </div>
-        {tiers.map((t, tIdx) => (
+        {props.tiers.map((t, tIdx) => (
           <ServiceTierFeatures
-            rank={t.rank}
-            features={t.features}
+            title={formatTierTitle(t.title)}
+            addOns={t.addOns}
             active={tIdx <= tierIdx}
-            key={t.rank}
+            key={t.title}
           />
         ))}
         <button

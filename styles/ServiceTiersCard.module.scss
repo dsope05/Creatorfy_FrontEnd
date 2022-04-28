@@ -21,7 +21,8 @@ $lightish-border: #bbbbbb;
 
 .descriptionAndCost {
   display: inline-flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
+  width: 100%;
   align-items: center;
 
   .tierCost {

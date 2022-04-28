@@ -5,12 +5,6 @@
 
 @import 'colors';
 
-.carouselImg {
-  display: block;
-  width: 100%;
-  border-radius: 8px;
-}
-
 .serviceTiersContainer {
   width: 100%;
   border-radius: 8px;
@@ -41,7 +35,7 @@
 
 .serviceCardInfo {
   background-color: #ffffff;
-  margin: 40px 0;
+  margin-bottom: 40px;
   padding: 36px 24px;
   border-radius: 8px;
   border: 1px solid pink;
