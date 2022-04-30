@@ -1,0 +1,13 @@
+@import 'colors';
+
+.loadingDiv {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+
+.loadingSpinner {
+  color: $creatorfy-pink;
+  width: 5em;
+  height: 5em;
+}

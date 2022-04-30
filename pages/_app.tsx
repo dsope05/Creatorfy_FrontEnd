@@ -1,23 +1,27 @@
-import { ApolloProvider } from '@apollo/client';
-import { ModalProvider } from '../components/providers/ModalProvider';
+import { InMemoryCache, ApolloProvider, ApolloClient } from '@apollo/client';
 import { useApollo } from '../graphql/useApollo';
 import type { AppProps } from 'next/app';
-import '../styles/globals.css';
-import 'bootstrap-icons/font/bootstrap-icons.css';
 
-// Mobile devices default to http, but the share button requires https for mobile.
-if (
-  process.env.NODE_ENV === 'production' &&
-  window.location.protocol !== 'https:'
-)
-  window.location.protocol = 'https:';
+import { ModalProvider } from '../components/providers/ModalProvider';
+import Layout from '../components/layout';
+
+// Add bootstrap css & custom theme & global CSS
+import 'bootstrap/dist/css/bootstrap.css';
+import '../styles/bootstrapTheme.scss';
+import '../styles/globals.css';
+
+const apolloClient = new ApolloClient({
+  uri: '/query/graphql/',
+  cache: new InMemoryCache(),
+});
 
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
-  const apolloClient = useApollo(pageProps.initialApolloState);
   return (
     <ApolloProvider client={apolloClient}>
       <ModalProvider>
-        <Component {...pageProps} />
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
       </ModalProvider>
     </ApolloProvider>
   );

@@ -1,0 +1,70 @@
+/**
+ * Overwriting Bootstrap SCSS variables to include our own themes.
+ * See Also: https://getbootstrap.com/docs/5.0/customize/color/#theme-colors
+ */
+
+@import './colors';
+
+// Global Theme Variables
+$body-bg: $creatorfy-background;
+$input-focus-border-color: $creatorfy-faint-pink;
+$input-btn-focus-color: $creatorfy-faint-pink;
+
+// Accordion customization (https://getbootstrap.com/docs/5.0/components/accordion/#variables).
+$accordion-bg: transparent;
+$accordion-button-active-bg: $creatorfy-faint-pink;
+$accordion-button-active-color: $creatorfy-pink;
+$accordion-border-width: 0;
+
+@import '../node_modules/bootstrap/scss/bootstrap';
+
+.btn {
+  padding-top: 0.75em;
+  padding-bottom: 0.75em;
+}
+
+.btn-primary {
+  @include button-variant(
+    $creatorfy-pink,
+    // $background
+    $creatorfy-pink,
+    // $border
+    white,
+    // $color
+    darken($creatorfy-pink, 5%),
+    // $hover-background
+    darken($creatorfy-pink, 5%),
+    // $hover-border
+    white // $hover-color
+  );
+}
+
+.btn-secondary {
+  @include button-variant(
+    transparent,
+    // $background
+    transparent,
+    // $border
+    $creatorfy-off-black,
+    // $color
+    transparent,
+    // $hover-background
+    transparent,
+    // $hover-border
+    $creatorfy-off-black,
+    // $hover-color
+  );
+
+  //$background,
+  //$border,
+  //$color: color-contrast($background),
+  //$hover-background: if($color == $color-contrast-light, shade-color($background, $btn-hover-bg-shade-amount), tint-color($background, $btn-hover-bg-tint-amount)),
+  //$hover-border: if($color == $color-contrast-light, shade-color($border, $btn-hover-border-shade-amount), tint-color($border, $btn-hover-border-tint-amount)),
+  //$hover-color: color-contrast($hover-background),
+  //$active-background: if($color == $color-contrast-light, shade-color($background, $btn-active-bg-shade-amount), tint-color($background, $btn-active-bg-tint-amount)),
+  //$active-border: if($color == $color-contrast-light, shade-color($border, $btn-active-border-shade-amount), tint-color($border, $btn-active-border-tint-amount)),
+  //$active-color: color-contrast($active-background),
+  //$disabled-background: $background,
+  //$disabled-border: $border,
+  //$disabled-color: color-contrast($disabled-background)
+}

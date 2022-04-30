@@ -8,18 +8,18 @@
 }
 
 .creatorCard {
-  margin-top: 50px;
-    display:flex;
+    margin-top: 50px;
+    display: flex;
     justify-content: center;
 }
 
-.services{
-  margin-top: 50px;
+.services {
+    margin-top: 50px;
 }
 
 @media screen and (max-width: 1160px) {
-  .creatorCard {
-    display:flex;
-    justify-content: center;
-  }
+    .creatorCard {
+        display: flex;
+        justify-content: center;
+    }
 }
